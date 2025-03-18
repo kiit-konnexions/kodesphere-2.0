@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from "react";
-import { Button } from "@nextui-org/react";
 
 function SubmissionForm() {
   const [formData, setFormData] = useState({
@@ -61,12 +60,12 @@ function SubmissionForm() {
             <p className="text-sm text-gray-600">
               <span className="font-semibold">Note:</span> You can submit only once.
             </p>
-            <Button
+            <button
               type="submit"
               className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
             >
               Submit
-            </Button>
+            </button>
           </div>
         </form>
       </div>
