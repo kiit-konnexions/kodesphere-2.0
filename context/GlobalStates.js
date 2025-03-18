@@ -1,16 +1,5 @@
-'use client';
-import React, { createContext, useState } from "react";
+const { createContext } = require("react");
 
-const GlobalState = createContext();
-
-export const GlobalStateProvider = ({ children }) => {
-  const [count, setCount] = useState(0);
-
-  return (
-    <GlobalState.Provider value={{ count, setCount }}>
-      {children}
-    </GlobalState.Provider>
-  );
-};
+const GlobalState = createContext(null);
 
 export default GlobalState;
