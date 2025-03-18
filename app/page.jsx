@@ -1,9 +1,10 @@
+import SubmissionForm from '@/components/SubmissionForm'
 import React from 'react'
 
 const Landing = () => {
   return (
     <div>
-      this is Kodesphere 3.0
+      <SubmissionForm/>
     </div>
   )
 }
