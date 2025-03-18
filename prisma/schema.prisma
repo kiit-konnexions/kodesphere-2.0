@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TRACKS {
+  WEB
+  APP
+  ML
+}
+
+model Team {
+  TeamId   String   @id // Handle 6-letter random string in application
+  TeamName String   @unique
+  Track    TRACKS
+  createdAt DateTime @default(now())
+  
+  Participants Participant[]
+  Submission  Submission?
+}
+
+model Participant {
+  UserId    String   @id @default(uuid())
+  email     String   @unique
+  leader    Boolean
+  TeamId    String
+  TeamName  String
+  createdAt DateTime @default(now())
+  
+  Team Team @relation(fields: [TeamId], references: [TeamId])
+}
+
+model Submission {
+  TeamId          String   @id
+  leaderEmail     String   @unique
+  githubLink      String
+  deploymentLink  String?
+  submittedAt     DateTime @default(now())
+  
+  Team Team @relation(fields: [TeamId], references: [TeamId])
+}
