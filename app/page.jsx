@@ -1,10 +1,9 @@
-import KonnexwebSubmission from '@/components/Submission Form'
 import React from 'react'
 
 const Landing = () => {
   return (
     <div>
-      <KonnexwebSubmission/>
+      this is Kodesphere 3.0
     </div>
   )
 }
