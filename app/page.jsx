@@ -1,9 +1,10 @@
 import React from 'react'
+import Hero from './Components/Hero'
 
 const Landing = () => {
   return (
     <div>
-      this is Kodesphere 3.0
+      <Hero />
     </div>
   )
 }
