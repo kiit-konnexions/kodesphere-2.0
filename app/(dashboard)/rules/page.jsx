@@ -1,40 +1,48 @@
-"use client";
-
-import { useEffect, useState } from "react";
+import {Suspense} from "react";
 import Sidebar from "@/app/components/SideBar";
-import CountdownTimer from "@/app/components/CountdownTimer";
-import AnimatedTitle from "@/app/components/AnimatedTitle";
+import ClientAnimatedTitle from "@/app/components/client/ClientAnimatedTitle";
+import ClientCountdownTimer from "@/app/components/client/ClientCountdownTimer";
+import {getRules} from "@/app/(dashboard)/rules/data/data";
 
-// Sample rules data
-const rules = [
-    "All team members must be registered on the Kodesphere platform before the start of the hackathon.",
-    "Code submissions must be original work created during the hackathon period.",
-    "Teams may use open-source libraries and frameworks, but must disclose all dependencies.",
-    "Submissions must address the provided problem statement and meet the minimum requirements.",
-    "All code must be submitted before the deadline. Late submissions will not be accepted."
-];
+const rules = getRules();
+
+// PageHeader component for consistent header styling across pages
+const PageHeader = ({ title, showCountdown = true }) => {
+    return (
+        <header className="flex flex-col sm:flex-row justify-between items-start gap-6 mb-12 mt-4" aria-labelledby="page-title">
+            <div className="max-w-full">
+                <Suspense fallback={<div className="h-10 w-64 bg-gray-200 animate-pulse" aria-hidden="true"></div>}>
+                    <ClientAnimatedTitle text={title} id="page-title" />
+                </Suspense>
+            </div>
+
+            {showCountdown && (
+                <div className="bg-gray-100 p-5 rounded-none border border-gray-200 shadow-sm w-full sm:w-auto">
+                    <ClientCountdownTimer targetDate="April 2, 2025" />
+                </div>
+            )}
+        </header>
+    );
+};
 
 // Rules Container Component
 const RulesContainer = ({ rules }) => {
     return (
-        <div className={`
-      bg-gray-100
-      p-8
-      rounded-none
-      border border-gray-200
-      transition-all
-      duration-300
-      w-full
-      mt-10
-      shadow-sm
-    `}>
-            <ol className="list-none space-y-8 pl-0">
+        <section 
+            aria-labelledby="rules-heading" 
+            className="bg-gray-100 p-8 rounded-none border border-gray-200 w-full mt-10 shadow-sm"
+        >
+            <h2 id="rules-heading" className="sr-only">Hackathon Rules</h2>
+            <ol className="list-none space-y-8 pl-0" aria-label="List of hackathon rules">
                 {rules.map((rule, index) => (
-                    <li key={index} className="flex">
+                    <li key={index} className="flex items-start">
                         <div className="mr-6 flex-shrink-0">
-                  <span className="inline-flex items-center justify-center h-10 w-10 bg-white border border-gray-300">
-                    {index + 1}
-                  </span>
+                          <span
+                              className="inline-flex items-center justify-center h-10 w-10 bg-white border border-gray-300 font-medium"
+                              aria-hidden="true"
+                          >
+                            {index + 1}
+                          </span>
                         </div>
                         <div className="flex-1">
                             <p className="text-base leading-relaxed">{rule}</p>
@@ -42,47 +50,19 @@ const RulesContainer = ({ rules }) => {
                     </li>
                 ))}
             </ol>
-        </div>
+        </section>
     );
 };
 
 function RulesPage() {
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    useEffect(() => {
-        setIsLoaded(true);
-    }, []);
-
     return (
         <div className="flex min-h-screen bg-white text-black">
-            <Sidebar/>
+            <Sidebar />
 
             <main className="flex-1 p-6 md:p-12 bg-white relative z-10 mt-16 sm:mt-0 mb-8">
-                {/* Header section with title and countdown */}
-                <div className="flex flex-col sm:flex-row justify-between items-start gap-6 mb-12 mt-4">
-                    <div className={`transform transition-all duration-500 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'} max-w-full`}>
-                        <AnimatedTitle text="RULES" triggerOnLoad={isLoaded} />
-                    </div>
-
-                    <div className={`
-                      bg-gray-100
-                      p-5
-                      rounded-none
-                      border border-gray-200
-                      shadow-sm
-                      w-full
-                      sm:w-auto
-                      transform transition-all duration-500 delay-100
-                      ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}
-                    `}>
-                        <CountdownTimer />
-                    </div>
-                </div>
-
-                {/* Rules Container */}
-                <div className={`transform transition-all duration-500 delay-200 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
-                    <RulesContainer rules={rules} />
-                </div>
+                <PageHeader title="RULES" />
+                
+                <RulesContainer rules={rules} />
             </main>
         </div>
     );
