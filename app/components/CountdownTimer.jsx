@@ -1,6 +1,5 @@
 "use client";
 import {useEffect, useState} from 'react';
-import {useTheme} from "@/app/components/ThemeProvider";
 
 function calculateTimeRemaining() {
     // Target date: March 31, 9 AM, 2025
@@ -22,7 +21,6 @@ function calculateTimeRemaining() {
 }
 
 export default function CountdownTimer() {
-    const {darkMode} = useTheme();
     const [timeLeft, setTimeLeft] = useState({
         days: 0, hours: 0, minutes: 0, seconds: 0, isExpired: false,
     });
@@ -54,7 +52,7 @@ export default function CountdownTimer() {
         fontSize: '1.8rem',
         fontWeight: '700',
         lineHeight: 1,
-        color: darkMode ? '#ffffff' : '#222222',
+        color: '#222222',
     };
 
     const labelStyle = {
@@ -62,13 +60,13 @@ export default function CountdownTimer() {
         fontSize: '0.7rem',
         fontWeight: '500',
         textTransform: 'uppercase',
-        color: darkMode ? '#9ca3af' : '#666666', // zinc-400 in dark mode
+        color: '#666666',
         marginTop: '4px',
     };
 
     const separatorStyle = {
         fontSize: '1.8rem',
-        color: darkMode ? '#52525b' : '#aaaaaa', // zinc-600 in dark mode
+        color: '#aaaaaa',
         margin: '0 -2px 16px 0',
     };
 
@@ -108,7 +106,7 @@ export default function CountdownTimer() {
                 fontFamily: 'JetBrains Mono, monospace',
                 fontSize: '0.8rem',
                 fontWeight: '400',
-                color: darkMode ? '#9ca3af' : '#777777', // zinc-400 in dark mode
+                color: '#777777',
                 marginLeft: '8px',
                 marginTop: '4px',
             }}>
