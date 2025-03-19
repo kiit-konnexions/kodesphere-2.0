@@ -1,7 +1,9 @@
 import { Suspense } from "react";
-import Sidebar from "@/app/components/SideBar";
-import ClientAnimatedTitle from "@/app/components/client/ClientAnimatedTitle";
-import ClientCountdownTimer from "@/app/components/client/ClientCountdownTimer";
+import Sidebar from "@/components/SideBar";
+import ClientAnimatedTitle from "@/components/client/ClientAnimatedTitle";
+import ClientCountdownTimer from "@/components/client/ClientCountdownTimer";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 // PageHeader component for consistent header styling across pages
 const PageHeader = ({ title, showCountdown = true }) => {
@@ -25,7 +27,16 @@ const PageHeader = ({ title, showCountdown = true }) => {
   );
 };
 
-function RulesPage() {
+async function SubmissionPage() {
+  const session = await getServerSession(authOptions);
+  
+      if(!session){
+          return(
+              <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
+                401 | Unauthorized 🙅‍♂️
+              </span>
+            )
+      }
   return (
     <div className="flex min-h-screen text-black bg-white">
       <Sidebar />
@@ -37,4 +48,4 @@ function RulesPage() {
   );
 }
 
-export default RulesPage;
+export default SubmissionPage;

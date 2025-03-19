@@ -1,6 +1,6 @@
 "use client";
 
-import CountdownTimer from "@/app/components/CountdownTimer";
+import CountdownTimer from "@/components/CountdownTimer";
 
 // Simple client component wrapper for CountdownTimer
 export default function CountdownWrapper() {

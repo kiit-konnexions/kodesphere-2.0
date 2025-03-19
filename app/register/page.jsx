@@ -34,10 +34,10 @@ const RegistrationPage = () => {
     if(status==="unauthenticated"){
         setTimeout(()=>{
           router.push('/')
-        },[2000])
+        },[100])
         return(
           <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
-            401 | Unauthorized 🙅‍♂️ <br /> Redirecting to Home...
+            401 | Unauthorized 🙅‍♂️
           </span>
         )
     }

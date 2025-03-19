@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { signOut } from "next-auth/react";
+import RaiseHand from "./fragments/RaiseHand";
 
 const navigationLinks = [
   { name: "Dashboard", path: "/dashboard" },
@@ -15,8 +17,9 @@ const navigationLinks = [
 
 const logoutLink = { name: "Logout", path: "/logout" };
 
-const Sidebar = () => {
+const Sidebar = ({teamDetails}) => {
   const [isMobile, setIsMobile] = useState(false);
+  const [raiseHand, setRaiseHand] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [notification, setNotification] = useState({ show: false, message: "", subtitle: "" });
@@ -52,20 +55,11 @@ const Sidebar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Handle hand raise notification
-  const handleHandRaise = () => {
-    setNotification({
-      show: true,
-      message: "Hand raised successfully!",
-      subtitle: "Organizers have been notified",
-    });
-    setTimeout(() => {
-      setNotification({ show: false, message: "", subtitle: "" });
-    }, 3000);
-  };
-
   return (
     <>
+    {raiseHand&&
+      <RaiseHand setRaiseHandDialog={setRaiseHand} teamName={teamDetails?.TeamName} domainName={teamDetails?.Track} setNotification={setNotification}/>
+    }
       {isMobile && (
         <div
           className={`fixed top-0 left-0 z-50 w-full ${
@@ -174,21 +168,21 @@ const Sidebar = () => {
           <div className="mb-3">
             <h3 className="px-2 mb-3 text-xs font-semibold tracking-wider text-gray-500 uppercase">Actions</h3>
             <div className="space-y-1">
-              <button onClick={handleHandRaise} className="relative w-full overflow-hidden chess-btn">
+              <button onClick={()=>{setRaiseHand(!raiseHand)}} className="relative w-full overflow-hidden chess-btn">
                 <span className="relative z-10 block w-full px-4 py-2 font-mono text-sm text-left text-black transition-colors duration-200">
                   Raise Hand
                 </span>
                 <div className="absolute inset-0 transition-transform duration-300 ease-out transform -translate-x-full bg-gray-200 slide-fill"></div>
               </button>
 
-              <Link href={logoutLink.path} className="block" onClick={() => setIsOpen(false)}>
+              <span className="block" onClick={() => setIsOpen(false)}>
                 <div className="relative overflow-hidden chess-btn">
-                  <span className="relative z-10 block w-full px-4 py-2 font-mono text-sm text-left text-black transition-colors duration-200">
+                  <span className="relative z-10 block w-full px-4 py-2 font-mono text-sm text-left text-black transition-colors duration-200" onClick={()=>{signOut()}}>
                     Log Out
                   </span>
                   <div className="absolute inset-0 transition-transform duration-300 ease-out transform -translate-x-full bg-gray-200 slide-fill"></div>
                 </div>
-              </Link>
+              </span>
             </div>
           </div>
 
