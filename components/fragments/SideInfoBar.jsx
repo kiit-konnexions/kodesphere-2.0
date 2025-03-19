@@ -8,8 +8,8 @@ const SideInfoBar = () => {
       setIsExpanded(!isExpanded);
     };
   return (
-    <div className="xl:w-[25%] w-full h-full p-4 bg-white rounded-xl flex flex-col items-center">
-          <div className="flex items-center justify-between w-full">
+    <div className="md:w-[25%] w-full p-4 bg-white rounded-xl flex flex-col items-center">
+          <div className="flex items-center justify-between w-full flex-wrap">
             <img className="w-auto h-[40px]" src="/images/ksaclogo.jpg" />
             <img className="w-auto h-[50px]" src="/images/konnexlogo.jpg" />
           </div>
@@ -19,7 +19,7 @@ const SideInfoBar = () => {
             className="mt-5 w-full h-auto rounded-xl"
           />
 
-          <p className="mt-5 text-gray-600 leading-7 min-h-[150px] overflow-scroll">
+          <p className="mt-5 text-gray-600 leading-7 min-h-[170px] overflow-y-scroll">
             Get Ready to ignite your coding passion! Konnexions is rolling out
             red carpet for the epic hackathon experience, Kodesphere. Prepare to
             dive into a whirlwind of innovation, teamwork, and the latest tech
