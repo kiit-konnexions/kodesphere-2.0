@@ -1,11 +1,19 @@
-import React from 'react'
+import LoginSection from "@/components/fragments/LoginSection";
+import SideInfoBar from "@/components/fragments/SideInfoBar";
 
-const Landing = () => {
+function Landing() {
+
+
   return (
-    <div>
-      this is Kodesphere 3.0
+    <div className="bg-gray-200 md:h-screen min-h-screen w-screen">
+      <div className="md:p-8 p-2 flex md:flex-row flex-col gap-4 md:h-screen min-h-screen">
+        {/* Left part */}
+        <SideInfoBar/>
+        {/*Right Part */}
+        <LoginSection/>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Landing
+export default Landing;
