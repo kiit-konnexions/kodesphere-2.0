@@ -1,33 +1,31 @@
-import {Space_Grotesk} from 'next/font/google';
+import { Space_Grotesk } from "next/font/google";
 import SideBar from "@/app/components/SideBar";
 import DashboardClient from "@/app/(dashboard)/dashboard/components/DashboardClient";
-import {getTeamData} from "@/app/(dashboard)/dashboard/data/teamService";
+import { getDashboardData } from "@/app/actions/getDashboardData";
+import { getServerSession } from "next-auth";
 
 const spaceGrotesk = Space_Grotesk({
-    subsets: ['latin'],
-    display: 'swap',
+  subsets: ["latin"],
+  display: "swap",
 });
 
 async function DashboardPage() {
-    // In the future, this can be replaced with an actual API call
-    const { teamName, teamMembers } = await getTeamData();
+  // const loggedInEmail = await getServerSession();
+  // const { teamDetails, teamParticipants } = await getDashboardData(loggedInEmail);
+  const { teamDetails, teamParticipants } = await getDashboardData();
 
-    return (
-        <div className="flex min-h-screen bg-gray-50 text-black">
-            <SideBar/>
+  return (
+    <div className="flex min-h-screen text-black bg-gray-50">
+      <SideBar />
 
-            {/* Chess piece background (placeholder) */}
-            <div className="fixed bottom-0 right-0 w-64 h-64 opacity-10 pointer-events-none z-0">
-                {/* Will be replaced with actual chess pieces */}
-            </div>
+      {/* Chess piece background (placeholder) */}
+      <div className="fixed bottom-0 right-0 z-0 w-64 h-64 pointer-events-none opacity-10">
+        {/* Will be replaced with actual chess pieces */}
+      </div>
 
-            <DashboardClient 
-                teamName={teamName} 
-                teamMembers={teamMembers} 
-                spaceGrotesk={spaceGrotesk}
-            />
-        </div>
-    );
+      <DashboardClient teamName={teamDetails.TeamName} teamMembers={teamParticipants} spaceGrotesk={spaceGrotesk} />
+    </div>
+  );
 }
 
 export default DashboardPage;

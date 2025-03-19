@@ -4,59 +4,56 @@ import { Space_Grotesk } from "next/font/google";
 import DomainBadge from "./components/DomainBadge";
 import ProblemStatementDetail from "./components/ProblemStatementDetail";
 import ClientWrapper from "./components/ClientWrapper";
-import { getProblemStatements } from "./data/problemStatements";
+import { getProblemStatementsDescriptions } from "./data/problemStatements";
 import CountdownWrapper from "@/app/(dashboard)/problem-statements/components/CountdownWrapper";
+import { getProblemStatements } from "@/app/actions/getProblemStatement";
 
 const spaceGrotesk = Space_Grotesk({
-    subsets: ['latin'],
-    display: 'swap',
+  subsets: ["latin"],
+  display: "swap",
 });
 
+export default async function ProblemStatementPage() {
+  // const loggedInEmail = await getServerSession();
+  // const teamDetails = await getProblemStatements(loggedInEmail);
+  const teamDetails = await getProblemStatements();
 
-export default function ProblemStatementPage({ searchParams }) {
-    // Get problemId from URL query params or default to "problem1"
-    const problemId = searchParams?.id || "problem1";
-    
-    // Get problem data - this now happens on the server
-    const problemStatements = getProblemStatements();
-    const currentProblem = problemStatements.find(p => p.id === problemId);
-    
-    if (!currentProblem) {
-        return <div>Problem statement not found</div>;
-    }
+  const problemStatements = getProblemStatementsDescriptions();
+  const currentProblem = problemStatements.find((p) => p.domain === teamDetails.Track);
 
-    return (
-        <div className="flex min-h-screen bg-white text-black">
-            <Sidebar/>
+  if (!currentProblem) {
+    return <div>Problem statement not found</div>;
+  }
 
-            <main className="flex-1 p-6 md:p-12 bg-white relative z-10 mt-16 sm:mt-0 mb-8">
-                {/* Header section with title and countdown */}
-                <div className="flex flex-col sm:flex-row justify-between items-start gap-6 mb-12 mt-4">
-                    <div className="max-w-full">
-                        {/* AnimatedTitle will be client component */}
-                        <ClientWrapper>
-                            <AnimatedTitle text="PROBLEM STATEMENT" />
-                        </ClientWrapper>
-                    </div>
+  return (
+    <div className="flex min-h-screen text-black bg-white">
+      <Sidebar />
 
-                    <div className="bg-gray-100 p-5 rounded-none border border-gray-200 shadow-sm w-full sm:w-auto">
-                        {/* CountdownTimer is a client component */}
-                        <ClientWrapper>
-                            <CountdownWrapper />
-                        </ClientWrapper>
-                    </div>
-                </div>
+      <main className="relative z-10 flex-1 p-6 mt-16 mb-8 bg-white md:p-12 sm:mt-0">
+        <div className="flex flex-col items-start justify-between gap-6 mt-4 mb-12 sm:flex-row">
+          <div className="max-w-full">
+            <ClientWrapper>
+              <AnimatedTitle text="PROBLEM STATEMENT" />
+            </ClientWrapper>
+          </div>
 
-                {/* Domain Badge */}
-                <div>
-                    <DomainBadge domain={currentProblem.domain} spaceGrotesk={spaceGrotesk} />
-                </div>
-
-                {/* Problem Statement Details */}
-                <div>
-                    <ProblemStatementDetail problem={currentProblem} spaceGrotesk={spaceGrotesk} />
-                </div>
-            </main>
+          <div className="w-full p-5 bg-gray-100 border border-gray-200 rounded-none shadow-sm sm:w-auto">
+            <ClientWrapper>
+              <CountdownWrapper />
+            </ClientWrapper>
+          </div>
         </div>
-    );
+
+        {/* Domain Badge */}
+        <div>
+          <DomainBadge domain={teamDetails.Track} spaceGrotesk={spaceGrotesk} />
+        </div>
+
+        {/* Problem Statement Details */}
+        <div>
+          <ProblemStatementDetail problem={currentProblem} spaceGrotesk={spaceGrotesk} />
+        </div>
+      </main>
+    </div>
+  );
 }
