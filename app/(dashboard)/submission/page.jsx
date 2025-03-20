@@ -4,6 +4,8 @@ import ClientAnimatedTitle from "@/components/client/ClientAnimatedTitle";
 import ClientCountdownTimer from "@/components/client/ClientCountdownTimer";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import SubmissionForm from "@/components/SubmissionForm";
+import { getSubmission } from "@/app/actions/getSubmission";
 
 // PageHeader component for consistent header styling across pages
 const PageHeader = ({ title, showCountdown = true }) => {
@@ -29,6 +31,7 @@ const PageHeader = ({ title, showCountdown = true }) => {
 
 async function SubmissionPage() {
   const session = await getServerSession(authOptions);
+  const submission = await getSubmission(session?.user.email);
   
       if(!session){
           return(
@@ -43,6 +46,7 @@ async function SubmissionPage() {
 
       <main className="relative z-10 flex-1 p-6 mt-16 mb-8 bg-white md:p-12 sm:mt-0">
         <PageHeader title="SUBMISSION" />
+        <SubmissionForm submissionStat={submission.status} teamId={submission.TEAMID}/>
       </main>
     </div>
   );

@@ -41,8 +41,7 @@ export async function registerTeam(teamName, track, members, leaderMail){
         return {success:true, message:"Team created Successfully!"};
     }catch(e){
         console.log(e);
-        return {success:false, message:"Error creating team"};
+        return {success:false, message:"Error creating Team, Name Already Taken!"};
     }
 
-    return true
 }

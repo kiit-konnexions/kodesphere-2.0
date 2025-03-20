@@ -13,13 +13,12 @@ const RegistrationPage = () => {
     const router = useRouter();
     const {data:session, status} = useSession();
     const [pageStatus, setPageStatus] = useState("loading");
-    const [counter, setCounter] = useState(5);
     const [isRegistered, setIsRegistered] = useState(false);
 
     useEffect( ()=>{
         if(status==="authenticated"){
           const cr = async () => {
-              console.log(session?.user.email);
+              // console.log(session?.user.email);
               const res = await checkReg(session?.user.email)
               if (res){
                   setIsRegistered(true)

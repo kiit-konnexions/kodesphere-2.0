@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { registerTeam } from '@/app/actions/registerTeam';
 import { useRouter } from 'next/navigation';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function RegistrationForm() {
   const router = useRouter();
@@ -41,10 +42,11 @@ export default function RegistrationForm() {
     e.preventDefault();
     const res = await registerTeam(teamName, track, members, session?.user.email);
     if(res.success){
-      alert(res.message);
+      toast.success(res.message);
       setLoading(false);
       router.push('/');
     }else{
+      toast.success(res.message);
       setLoading(false);
       alert(res.message);
     }
@@ -52,6 +54,7 @@ export default function RegistrationForm() {
 
   return (
     <div className='md:w-[75%] w-full rounded-xl bg-white overflow-y-scroll h-full'>
+      <Toaster />
       <form
         onSubmit={handleSubmit}
         className='shadow-xl p-6 rounded-xl'
