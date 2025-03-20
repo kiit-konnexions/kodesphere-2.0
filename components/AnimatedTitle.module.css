@@ -1,0 +1,21 @@
+.titleContainer {
+    position: relative;
+    width: 25%;
+    font-size: 48px;
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
+}
+
+.word {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.letter {
+    transition: color 0.2s ease;
+}
+
+.changing {
+    color: lightgray;
+}

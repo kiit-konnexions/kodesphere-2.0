@@ -20,32 +20,34 @@ enum TRACKS {
 }
 
 model Team {
-  TeamId   String   @id // Handle 6-letter random string in application
-  TeamName String   @unique
-  Track    TRACKS
+  TeamId    String   @id @default(uuid())
+  TeamName  String   @unique
+  Track     TRACKS
   createdAt DateTime @default(now())
-  
+
   Participants Participant[]
-  Submission  Submission?
+  Submission   Submission?
 }
 
 model Participant {
   UserId    String   @id @default(uuid())
   email     String   @unique
+  name      String
+  rollNo    String
+  phone     String
   leader    Boolean
   TeamId    String
-  TeamName  String
   createdAt DateTime @default(now())
-  
+
   Team Team @relation(fields: [TeamId], references: [TeamId])
 }
 
 model Submission {
-  TeamId          String   @id
-  leaderEmail     String   @unique
-  githubLink      String
-  deploymentLink  String?
-  submittedAt     DateTime @default(now())
-  
-  Team Team @relation(fields: [TeamId], references: [TeamId])
+  TeamId         String   @id
+  leaderEmail    String   @unique
+  githubLink     String
+  deploymentLink String?
+  submittedAt    DateTime @default(now())
+
+  Team Team @relation(fields: [TeamId], references: [TeamId])
 }

@@ -15,9 +15,11 @@ CREATE TABLE "Team" (
 CREATE TABLE "Participant" (
     "UserId" TEXT NOT NULL,
     "email" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "rollNo" TEXT NOT NULL,
+    "phone" TEXT,
     "leader" BOOLEAN NOT NULL,
     "TeamId" TEXT NOT NULL,
-    "TeamName" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Participant_pkey" PRIMARY KEY ("UserId")

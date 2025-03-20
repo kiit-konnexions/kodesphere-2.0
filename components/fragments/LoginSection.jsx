@@ -1,8 +1,10 @@
 "use client";
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 import React from "react";
 
 const LoginSection = () => {
+  const {data:session, status} = useSession();
   return (
     <div className=" md:w-[75%] w-full rounded-xl bg-white h-fit flex items-start justify-start flex-col p-10 gap-5">
       <h2 className="text-3xl font-semibold flex items-center justify-center gap-3">
@@ -35,14 +37,23 @@ const LoginSection = () => {
       <p>To register, please sign in with your KIIT Gmail account.</p>
 
       <p className="bg-yellow-100 text-yellow-800 rounded-xl p-3">
-        Only 1 team member needs to register the team.
+        Only 1 team member needs to register the team. (The Person Registering will automatically become the team leader)
       </p>
-      <button
-        onClick={() => signIn("google")}
+      {status!=="authenticated"?<button
+        onClick={() => signIn("google", { callbackUrl: '/register' })}
         className=" bg-gray-200 p-3 rounded-xl hover:bg-gray-400 trasnsition-all ease-in-out duration-300 cursor-pointer"
       >
         Sign in with google
       </button>
+      :
+      <div className="flex items-center gap-3">
+        <Link href="/register" className=" bg-gray-200 p-3 rounded-xl hover:bg-gray-400 trasnsition-all ease-in-out duration-300 cursor-pointer">
+          Register
+        </Link>
+        <button onClick={() => signOut()} className=" bg-gray-200 p-3 rounded-xl hover:bg-gray-400 trasnsition-all ease-in-out duration-300 cursor-pointer">Sign out</button>
+      </div>
+      }
+
     </div>
   );
 };
