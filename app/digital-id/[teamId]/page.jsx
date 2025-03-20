@@ -52,31 +52,6 @@ function VirtualCard({ tid }) {
     }
   }, [tid]);
 
-  const findTeam = async (id) => {
-    if (tid) {
-      let findRequest = await axios.post(
-        "/vid/teams/api",
-        {
-          id: id,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (findRequest.data.success) {
-        setPageLoaded(true);
-        setSpinnerOn(false);
-        setTeam(findRequest.data.team);
-      } else {
-        setSpinnerOn(false);
-        setStateText(findRequest.data.message);
-        toast.error(findRequest.data.message);
-      }
-    }
-  };
-
   useEffect(() => {
     if (team) {
       if (n_register) {
@@ -108,13 +83,6 @@ function VirtualCard({ tid }) {
         <>
           <div className="max-w-7xl mx-auto rounded-3xl mt-6 md:mt-10 lg:mt-16 overflow-hidden px-4 md:px-10 pb-20 bg-white">
             <div className="flex items-center md:justify-center relative w-full">
-              <Link href="/">
-                <img
-                  src="/event-static/event-logo.png"
-                  alt=""
-                  className="h-7 md:h-8 lg:h-10"
-                />
-              </Link>
               <Link href="/">
                 <Button
                   size="smn"
