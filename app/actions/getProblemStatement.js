@@ -1,8 +1,16 @@
 "use server";
 
 import prisma from "@/lib/prisma";
+import { checkRateLimit } from "./rateLimit";
 
 export async function getProblemStatements(loggedInEmail) {
+
+   const rateLimit = await checkRateLimit();
+      if(!rateLimit){
+          console.log("Rate limit exceeded")
+          return false
+      }
+
   const participantData = await prisma.participant.findFirst({
     where: {
       email: loggedInEmail,

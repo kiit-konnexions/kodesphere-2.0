@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from 'next/navigation'
 
 const SideInfoBar = () => {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -7,6 +8,12 @@ const SideInfoBar = () => {
     const toggleText = () => {
       setIsExpanded(!isExpanded);
     };
+
+    const router = useRouter();
+    const navigateToContact = () =>{
+      router.push('/contacts')
+    }
+
   return (
     <div className="md:w-[25%] w-full p-4 bg-white rounded-xl flex flex-col items-center">
           <div className="flex items-center justify-between w-full flex-wrap">
@@ -57,12 +64,12 @@ const SideInfoBar = () => {
           </div>
 
           <div className="flex items-end justify-between h-full w-full mt-10">
-            <button className=" text-black rounded hover:underline flex items-center justify-center gap-2 cursor-pointer">
+            <button className=" text-black rounded hover:underline flex items-center justify-center gap-2 cursor-pointer" onClick={navigateToContact}>
               <img src="/icons/call.svg" alt="contactus" className="w-auto h-[20px]"/>
               Contact Us
             </button>
             <button className=" text-black rounded hover:underline flex items-center justify-center gap-2 cursor-pointer">
-            <img src="/icons/guide.svg" alt="contactus" className="w-auto h-[20px]"/>
+            <img src="/icons/guide.svg" alt="event_guide" className="w-auto h-[20px]"/>
               Event Guide
             </button>
           </div>

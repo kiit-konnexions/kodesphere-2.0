@@ -44,7 +44,6 @@ model Participant {
 
 model Submission {
   TeamId         String   @id
-  leaderEmail    String   @unique
   githubLink     String
   deploymentLink String?
   submittedAt    DateTime @default(now())
