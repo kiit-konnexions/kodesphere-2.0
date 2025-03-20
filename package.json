@@ -9,13 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nextui-org/react": "^2.6.11",
     "@prisma/client": "^6.5.0",
+    "axios": "^1.8.4",
     "lru-cache": "^11.0.2",
     "next": "15.2.2",
     "next-auth": "^4.24.11",
     "prisma": "^6.5.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
