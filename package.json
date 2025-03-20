@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@prisma/client": "^6.5.0",
+    "lucide-react": "^0.483.0",
     "lru-cache": "^11.0.2",
     "next": "15.2.2",
     "next-auth": "^4.24.11",
