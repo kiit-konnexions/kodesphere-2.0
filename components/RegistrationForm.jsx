@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 import { registerTeam } from '@/app/actions/registerTeam';
 import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
+import { sendEmail } from '@/app/actions/sendEmail';
 
 export default function RegistrationForm() {
   const router = useRouter();
@@ -13,7 +14,7 @@ export default function RegistrationForm() {
   const {data:session, status} = useSession();
   const [track, setTrack] = useState('web');
   const [members, setMembers] = useState([
-    { id: 1, name: session?.user.name, phone: '', roll: '', email: session?.user.email },
+    { id: 1, name: session?.user.name, phone: '', email: session?.user.email },
   ]);
 
   const addMember = () => {
@@ -21,12 +22,12 @@ export default function RegistrationForm() {
       members.length > 0 ? Math.max(...members.map((m) => m.id)) + 1 : 1;
     setMembers([
       ...members,
-      { id: newId, name: '', phone: '', roll: '', email: ''},
+      { id: newId, name: '', phone: '', email: ''},
     ]);
   };
 
-  const removeMembers = () => {
-    setMembers(members.slice(0, members.length - 1));
+  const removeMembers = (id) => {
+    setMembers(members.filter((member)=> member.id !== id));
   }
 
   const updateMember = (id, field, value) => {
@@ -38,17 +39,17 @@ export default function RegistrationForm() {
   };
 
   const handleSubmit = async(e) => {
-    setLoading(true);
     e.preventDefault();
+    setLoading(true);
     const res = await registerTeam(teamName, track, members, session?.user.email);
     if(res.success){
+      await sendEmail(members,res.id,teamName);
       toast.success(res.message);
       setLoading(false);
       router.push('/');
     }else{
-      toast.success(res.message);
+      toast.error(res.message);
       setLoading(false);
-      alert(res.message);
     }
   };
 
@@ -102,7 +103,15 @@ export default function RegistrationForm() {
 
           <div id='membersList' className='divide-y-1 divide-gray-500'>
             {members.map((member) => (
-              <div key={member.id} className='mb-5 pb-10'>
+              <div key={member.id} className='flex flex-col mb-5 pb-10'>
+                {member.id > 1 && <div className='flex self-end'>
+                  <button
+                  onClick={()=>{removeMembers(member.id)}}
+                  className='rounded-md bg-black px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-neutral-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black'
+                >
+                   Remove
+                </button>
+                </div>}
                 <div className='mb-4'>
                   <label
                     htmlFor={`memberName${member.id}`}
@@ -116,42 +125,6 @@ export default function RegistrationForm() {
                     value={member.name}
                     onChange={(e) =>
                       updateMember(member.id, 'name', e.target.value)
-                    }
-                    className='mt-2.5 block w-full rounded-md px-3.5 py-2 text-base outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-black'
-                    required
-                  />
-                </div>
-                <div className='mb-4'>
-                  <label
-                    htmlFor={`memberRoll${member.id}`}
-                    className='block text-sm/6 font-semibold'
-                  >
-                    Roll Number
-                  </label>
-                  <input
-                    type='text'
-                    id={`memberRoll${member.id}`}
-                    value={member.roll}
-                    onChange={(e) =>
-                      updateMember(member.id, 'roll', e.target.value)
-                    }
-                    className='mt-2.5 block w-full rounded-md px-3.5 py-2 text-base outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-black'
-                    required
-                  />
-                </div>
-                <div className='mb-4'>
-                  <label
-                    htmlFor={`memberPhone${member.id}`}
-                    className='block text-sm/6 font-semibold'
-                  >
-                    Phone Number
-                  </label>
-                  <input
-                    type='text'
-                    id={`memberPhone${member.id}`}
-                    value={member.phone}
-                    onChange={(e) =>
-                      updateMember(member.id, 'phone', e.target.value)
                     }
                     className='mt-2.5 block w-full rounded-md px-3.5 py-2 text-base outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-black'
                     required
@@ -175,6 +148,41 @@ export default function RegistrationForm() {
                     required
                   />
                 </div>
+                <div className='mb-4'>
+                  <label
+                    htmlFor={`memberRoll${member.id}`}
+                    className='block text-sm/6 font-semibold'
+                  >
+                    Roll Number
+                  </label>
+                  <input
+                    type='text'
+                    id={`memberRoll${member.id}`}
+                    value={member.email.split('@')[0]}
+                    readOnly
+                    className='mt-2.5 block w-full rounded-md px-3.5 py-2 text-base outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-black'
+                    required
+                  />
+                </div>
+                <div className='mb-4'>
+                  <label
+                    htmlFor={`memberPhone${member.id}`}
+                    className='block text-sm/6 font-semibold'
+                  >
+                    Phone Number
+                  </label>
+                  <input
+                    type='text'
+                    id={`memberPhone${member.id}`}
+                    value={member.phone}
+                    onChange={(e) =>
+                      updateMember(member.id, 'phone', e.target.value)
+                    }
+                    className='mt-2.5 block w-full rounded-md px-3.5 py-2 text-base outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-black'
+                    required
+                  />
+                </div>
+                
               </div>
             ))}
           </div>
@@ -187,17 +195,6 @@ export default function RegistrationForm() {
                 className='block rounded-md bg-black px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-neutral-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black'
               >
                 + Add Member
-              </button>
-            </div>
-          )}
-          {members.length > 1 && (
-            <div className='flex justify-end mb-5'>
-              <button
-                type='button'
-                onClick={removeMembers}
-                className='block rounded-md bg-black px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-neutral-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black'
-              >
-                Remove Member
               </button>
             </div>
           )}
@@ -237,9 +234,9 @@ export default function RegistrationForm() {
             </div>
           </div>
           <label className='text-sm/6 text-gray-600'>
-            By selecting this, you agree to our{' '}
+            Accept{' '}
             <a href='#' className='font-semibold hover:underline'>
-              rules
+              Terms & Conditions
             </a>
             .
           </label>
