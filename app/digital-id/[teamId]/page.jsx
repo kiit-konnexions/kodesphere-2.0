@@ -5,15 +5,17 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 const page = () => {
   const {teamId} = useParams();
-  console.log(teamId)
 
-  const [participants, setParticipants] = useState(null)
+  const [participants, setParticipants] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const getDetails = async () => {
+    setLoading(true);
     const pd = await getIdCards(teamId);
     if(pd.success){
       setParticipants(pd.data);
     }
+    setLoading(false);
   }
 
   useEffect(()=>{
@@ -30,8 +32,12 @@ const page = () => {
         </h1>
         <p className="font-poppins absolute top-[55%] text-xl text-black font-bold left-[5%]">{participant.Team.TeamName}{" - "}{participant.Team.TeamId}</p>
       </div>))}
-    {!participants && <span>
+    {participants===null && !loading && <span>
         Team Details Not Found
+      </span>}
+
+    {loading && <span>
+        Loading ID Cards...
       </span>}
     </div>
   );
