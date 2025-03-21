@@ -3,7 +3,7 @@
 import prisma from "@/lib/prisma";
 import { checkRateLimit } from "./rateLimit";
 
-export async function setSubmissionData(githubUrl, deploymentUrl, TeamId){
+export async function setSubmissionData(submissionFormData, TeamId){
      const rateLimit = await checkRateLimit();
         if(!rateLimit){
             console.log("Rate limit exceeded")
@@ -12,9 +12,8 @@ export async function setSubmissionData(githubUrl, deploymentUrl, TeamId){
     try{
         await prisma.submission.create({
             data:{
-                TeamId:TeamId,
-                githubLink:githubUrl,
-                deploymentLink:deploymentUrl
+                TeamId: TeamId,
+                submissionData: submissionFormData
             }
         })
 
