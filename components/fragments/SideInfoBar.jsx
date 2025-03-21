@@ -63,7 +63,7 @@ const SideInfoBar = () => {
       <div className="mt-6 self-start flex flex-col gap-2">
         <p className="flex items-center gap-3">
           <img src="/icons/calender.svg" alt="calendar" className="w-auto h-[20px]" />
-          31st March, 2024
+          31st March, 2025
         </p>
         <p className="flex items-center gap-3">
           <img src="/icons/location.svg" alt="location" className="w-auto h-[20px]" />
