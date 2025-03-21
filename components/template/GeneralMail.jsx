@@ -83,7 +83,7 @@ export const GeneralMessage = (team_name, team_id) => {
       <div class="container">
         <img
           style="padding-top: 20px"
-          src="https://events.konnexions.dev/event-static/email-header.png"
+          src="https://events.konnexions.dev/mail-images/emailheader.png"
           alt=""
         />
         <div class="messageBox">
@@ -110,7 +110,7 @@ export const GeneralMessage = (team_name, team_id) => {
           >
             <img
               style="padding-top: 20px"
-              src="https://events.konnexions.dev/event-static/open-id-card-email.png"
+              src="https://events.konnexions.dev/mail-images/teamIDBanner.png"
               alt=""
             />
           </a>

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const SideInfoBar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -18,8 +19,8 @@ const SideInfoBar = () => {
     <div className="md:w-[25%] w-full h-full p-4 bg-white rounded-xl flex flex-col items-center justify-between">
       <div className="flex flex-col items-center justify-center">
       <div className="flex items-center justify-between w-full flex-wrap">
-        <img className="w-auto h-[40px]" src="/images/ksaclogo.jpg" />
-        <img className="w-auto h-[50px]" src="/images/konnexlogo.jpg" />
+        <img className="w-auto h-[40px]" src="/images/ksaclogo.png" />
+        <img className="w-auto h-[50px]" src="/images/konnexionslogo.png" />
       </div>
 
       {/* Kodesphere Poster */}
@@ -28,11 +29,16 @@ const SideInfoBar = () => {
         className="mt-5 w-full h-auto rounded-xl"
       />
 
+      <img
+        src="/kodespherelogo.png"
+        className="w-[150px] h-auto rounded-xl"
+      />
+
       {/* Description Section */}
       <div className="mt-5 text-gray-600 leading-7">
         <p className={`text-sm transition-all duration-300 ${isExpanded ? "max-h-full" : "line-clamp-3"}`}>
           Get ready to ignite your coding passion! Konnexions is rolling out
-          the red carpet for an epic hackathon experience, Kodesphere. Prepare
+          the red carpet for an epic hackathon experience, Kodessphere. Prepare
           to dive into a whirlwind of innovation, teamwork, and the latest tech
           marvels. Whether you're a
           {isExpanded && (
@@ -77,10 +83,10 @@ const SideInfoBar = () => {
           <img src="/icons/call.svg" alt="contact" className="h-[20px]" />
           Contact Us
         </button>
-        <button className="text-black font-medium flex items-center gap-2 hover:underline">
+        <Link href="/event-guide" className="text-black font-medium flex items-center gap-2 hover:underline">
           <img src="/icons/guide.svg" alt="event_guide" className="h-[20px]" />
           Event Guide
-        </button>
+        </Link>
       </div>
     </div>
   );

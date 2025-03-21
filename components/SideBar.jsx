@@ -71,7 +71,7 @@ const Sidebar = ({teamDetails}) => {
               <div className="flex items-center">
                 <div className="flex items-center justify-center w-20 h-12 overflow-hidden bg-white rounded-sm">
                   <Image
-                    src="/kodesphere.png"
+                    src="/kodespherelogo.png"
                     alt="Kodesphere Logo"
                     width={517}
                     height={192}
@@ -117,7 +117,7 @@ const Sidebar = ({teamDetails}) => {
               {/* Primary logo (517x192) */}
               <div className="flex items-center justify-center h-16 -mt-2 overflow-hidden transition-colors duration-300 bg-white rounded-sm w-30">
                 <Image
-                  src="/kodesphere.png"
+                  src="/kodespherelogo.png"
                   alt="Primary Logo"
                   width={517}
                   height={192}

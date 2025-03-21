@@ -23,7 +23,7 @@ export const metadata = {
   description:
     "Gear up! Konnexions is back with the ultimate hackathon, Kodessphere v2.0. Brace yourself for an exhilarating journey of problem-solving, collaboration, and cutting-edge development. Whether you're a coding maestro or a budding genius, this is your chance to showcase your talent and make waves in the digital realm. Don't let this opportunity slip through your fingertips! Secure your spot now —register fast!",
   icons: {
-    icon: null,
+    icon: '/icon.png',
   },
   openGraph: {
     title: "Code. Collaborate. Conquer | Kodessphere v2.0",
