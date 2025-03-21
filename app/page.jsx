@@ -6,7 +6,7 @@ function Landing() {
 
   return (
     <div className="min-h-screen">
-      <div className="p-2 flex md:flex-row flex-col gap-4 h-screen bg-gray-200">
+      <div className="p-2 flex md:flex-row flex-col gap-4 min-h-screen bg-gray-200">
         {/* Left part */}
         <SideInfoBar/>
         {/*Right Part */}

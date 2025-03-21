@@ -75,7 +75,7 @@ const SideInfoBar = () => {
 
 
       {/* Buttons Section */}
-      <div className="flex justify-between w-full mt-5">
+      <div className="flex justify-between w-full mt-[120px]">
         <button
           className="text-black font-medium flex items-center gap-2 hover:underline"
           onClick={navigateToContact}
