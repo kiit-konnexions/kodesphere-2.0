@@ -6,7 +6,7 @@ import React from "react";
 const LoginSection = () => {
   const {data:session, status} = useSession();
   return (
-    <div className=" md:w-[75%] w-full rounded-xl bg-white h-fit flex items-start justify-start flex-col p-10 gap-5">
+    <div className=" md:w-[75%] w-full rounded-xl bg-white h-fit flex items-start justify-start flex-col md:p-10 p-5 gap-5">
       <h2 className="text-3xl font-semibold flex items-center justify-center gap-3">
         <svg
           xmlns="http://www.w3.org/2000/svg"

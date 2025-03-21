@@ -16,26 +16,28 @@ const SideInfoBar = () => {
   };
 
   return (
-    <div className="md:w-[25%] w-full h-full p-4 bg-white rounded-xl flex flex-col items-center justify-between">
+    <div className="md:w-[25%] w-full min-h-screen p-4 bg-white rounded-xl flex flex-col items-center justify-between">
       <div className="flex flex-col items-center justify-center">
       <div className="flex items-center justify-between w-full flex-wrap">
         <img className="w-auto h-[40px]" src="/images/ksaclogo.png" />
         <img className="w-auto h-[50px]" src="/images/konnexionslogo.png" />
       </div>
+      <div className="flex flex-col items-center justify-center">
+        <img
+          src="/images/kodesphereBanner.jpg"
+          className="mt-5 w-full h-auto rounded-xl"
+        />
+
+        <img
+          src="/kodespherelogo.png"
+          className="w-full h-auto rounded-xl"
+        />
+      </div>
 
       {/* Kodesphere Poster */}
-      <img
-        src="/images/kodesphereBanner.jpg"
-        className="mt-5 w-full h-auto rounded-xl"
-      />
-
-      <img
-        src="/kodespherelogo.png"
-        className="w-[150px] h-auto rounded-xl"
-      />
 
       {/* Description Section */}
-      <div className="mt-5 text-gray-600 leading-7">
+      <div className="mt-10 text-gray-600 leading-7">
         <p className={`text-sm transition-all duration-300 ${isExpanded ? "max-h-full" : "line-clamp-3"}`}>
           Get ready to ignite your coding passion! Konnexions is rolling out
           the red carpet for an epic hackathon experience, Kodessphere. Prepare
@@ -75,7 +77,7 @@ const SideInfoBar = () => {
 
 
       {/* Buttons Section */}
-      <div className="flex justify-between w-full mt-[120px]">
+      <div className="flex justify-between w-full mt-[135px]">
         <button
           className="text-black font-medium flex items-center gap-2 hover:underline"
           onClick={navigateToContact}
