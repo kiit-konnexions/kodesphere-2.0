@@ -99,14 +99,14 @@ export const GeneralMessage = (team_name, team_id) => {
   
           <a
             style="margin-top: 20px; display: block"
-            href="http://localhost:3000/digital-id/${team_id}"
+            href="http://events.konnexions.dev/digital-id/${team_id}"
           >
             Get you virtual ID card here.
           </a>
   
           <a
             style="display: block; max-width: 450px; margin: 0 auto"
-            href="http://localhost:3000/digital-id/${team_id}"
+            href="http://events.konnexions.dev/digital-id/${team_id}"
           >
             <img
               style="padding-top: 20px"
