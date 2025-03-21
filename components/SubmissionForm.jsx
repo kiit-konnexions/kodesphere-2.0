@@ -23,8 +23,8 @@ function SubmissionForm({submissionStat, teamId}) {
       toast.error("Team Details Not Found !");
       return
     }
-
-    const sub = await setSubmissionData(formData.githubLink,formData.deploymentLink,teamId);
+    
+    const sub = await setSubmissionData(formData, teamId);
     if(sub.success){
       toast.success("Submission Successful !");
       setLoading(false);
@@ -51,7 +51,7 @@ function SubmissionForm({submissionStat, teamId}) {
       <div className="w-full max-w-md p-6">
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="githubLink" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="githubLink" className="block mb-1 text-sm font-medium text-gray-700">
               GitHub Link:
             </label>
             <input
@@ -66,7 +66,7 @@ function SubmissionForm({submissionStat, teamId}) {
             />
           </div>
           <div className="mb-6">
-            <label htmlFor="deploymentLink" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="deploymentLink" className="block mb-1 text-sm font-medium text-gray-700">
               Deployment Link (optional):
             </label>
             <input
@@ -86,14 +86,14 @@ function SubmissionForm({submissionStat, teamId}) {
           </div>
 {          !loading?<button
             type="submit"
-            className="mt-5 w-full cursor-pointer px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+            className="w-full px-4 py-2 mt-5 text-white bg-black rounded-md cursor-pointer hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
           >
             Submit
           </button>
           :
           <button
             disabled
-            className="mt-5 w-full cursor-pointer px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+            className="w-full px-4 py-2 mt-5 text-white bg-gray-700 rounded-md cursor-pointer hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
           >
             Submitting
           </button>
