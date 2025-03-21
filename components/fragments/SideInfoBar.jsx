@@ -15,7 +15,7 @@ const SideInfoBar = () => {
   };
 
   return (
-    <div className="md:w-[25%] w-full h-fit min-h-screen p-4 bg-white rounded-xl flex flex-col items-center justify-between">
+    <div className="md:w-[25%] w-full h-full p-4 bg-white rounded-xl flex flex-col items-center justify-between">
       <div className="flex flex-col items-center justify-center">
       <div className="flex items-center justify-between w-full flex-wrap">
         <img className="w-auto h-[40px]" src="/images/ksaclogo.jpg" />
@@ -69,7 +69,7 @@ const SideInfoBar = () => {
 
 
       {/* Buttons Section */}
-      <div className="flex justify-between w-full mt-6">
+      <div className="flex justify-between w-full mt-5">
         <button
           className="text-black font-medium flex items-center gap-2 hover:underline"
           onClick={navigateToContact}

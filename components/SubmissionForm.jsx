@@ -37,9 +37,10 @@ function SubmissionForm({submissionStat, teamId}) {
 
   if(submission){
     return(
-      <div>
-        <span>
-          Already Submitted !
+      <div className="w-full flex items-center justify-center">
+        <span className="text-2xl font-bold flex items-center gap-2">
+          <img src="/icons/check.svg" className="w-[30px] h-[30px]"/>
+          SUBMITTED !
         </span>
       </div>
     )

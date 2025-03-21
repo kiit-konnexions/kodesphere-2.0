@@ -12,6 +12,7 @@ import Link from 'next/link';
 const RegistrationPage = () => {
     const router = useRouter();
     const {data:session, status} = useSession();
+    const [tid,setTid] = useState("")
     const [pageStatus, setPageStatus] = useState("loading");
     const [isRegistered, setIsRegistered] = useState(false);
 
@@ -20,9 +21,10 @@ const RegistrationPage = () => {
           const cr = async () => {
               // console.log(session?.user.email);
               const res = await checkReg(session?.user.email)
-              if (res){
-                  setIsRegistered(true)
-                  setPageStatus("loaded")
+              if (res.success){
+                  setIsRegistered(true);
+                  setTid(res.tid);
+                  setPageStatus("loaded");
               }
               setPageStatus("loaded")
           }
@@ -56,7 +58,7 @@ const RegistrationPage = () => {
                   You are Already Registered 🎉😍 <br />
               </span>
                 Excited to see you there!
-                <Link href="/idcard" className='bg-gray-200 hover:bg-gray-300 text-black py-2 px-4 rounded-xl text-sm'>
+                <Link href={`/digital-id/${tid}`} className='bg-gray-200 hover:bg-gray-300 text-black py-2 px-4 rounded-xl text-sm'>
                   View Id Card
                 </Link>
             </div>

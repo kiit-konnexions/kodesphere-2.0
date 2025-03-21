@@ -17,7 +17,7 @@ export async function checkReg(email){
         }
     })
     if(result){
-        return true
+        return ({success:true,tid:result.TeamId})
     }
-    return false
+    return  ({success:false})
 }

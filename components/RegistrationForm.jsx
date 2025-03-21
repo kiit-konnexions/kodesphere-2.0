@@ -6,6 +6,7 @@ import { registerTeam } from '@/app/actions/registerTeam';
 import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
 import { sendEmail } from '@/app/actions/sendEmail';
+import { sendTeleReg } from '@/app/actions/sendTeleReg';
 
 export default function RegistrationForm() {
   const router = useRouter();
@@ -44,6 +45,7 @@ export default function RegistrationForm() {
     const res = await registerTeam(teamName, track, members, session?.user.email);
     if(res.success){
       await sendEmail(members,res.id,teamName);
+      await sendTeleReg(res.id,teamName,members);
       toast.success(res.message);
       setLoading(false);
       router.push('/');
