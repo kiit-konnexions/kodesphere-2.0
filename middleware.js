@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export function middleware(req) {
   const url = req.nextUrl;
-  const targetDate = new Date("2025-04-1T00:00:00Z"); // Set your hackathon start date
+  const targetDate = new Date("2025-04-01T00:00:00Z"); // Set your hackathon start date
   const currentDate = new Date();
 
   const restrictedPaths = ["/submission", "/certification", "/problem-statements", "/rules"];
