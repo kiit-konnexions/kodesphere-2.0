@@ -32,13 +32,14 @@ const page = () => {
   
   return (
     <div className={`${spaceGrotesk.className} flex min-h-screen flex-wrap items-center justify-center gap-10 bg-gray-200 p-2`}>
-    {participants && participants?.map((participant)=>(<div key={participant.UserId} className="w-[450px] md:w-[350px] relative pointer-events-none select-none p-0">
+    {participants && participants?.map((participant)=>(<div key={participant.UserId} className="w-[380px] md:w-[280px] relative pointer-events-none select-none p-0">
+        <img src="/strap.png" className="h-full w-full translate-y-4" alt="idcard-strap" />
         <img src="/idcard.png" className="h-full w-full rounded-xl shadow-xl" alt="idcard" />
-        <h1 className="absolute top-[45%] font-bold left-[5%] font-poppins text-black flex flex-col items-start justify-start">
-          <span className="text-5xl font-bold">
+        <h1 className="absolute top-[68%] font-bold left-[5%] font-poppins text-black flex flex-col items-start justify-start">
+          <span className="text-4xl font-bold">
             {participant.name.split(" ")[0]}
           </span>
-          <span className="text-2xl font-normal text-black/60">
+          <span className="text-xl font-normal text-black/60">
             {participant.name.split(" ").slice(1,participant.name.split(" ").length).map((p)=>(
               p+" "
             ))}

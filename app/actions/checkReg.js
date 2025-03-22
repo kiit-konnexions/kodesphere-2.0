@@ -16,8 +16,10 @@ export async function checkReg(email){
             email:email
         }
     })
+    await prisma.$disconnect();
     if(result){
         return ({success:true,tid:result.TeamId})
     }
     return  ({success:false})
+
 }

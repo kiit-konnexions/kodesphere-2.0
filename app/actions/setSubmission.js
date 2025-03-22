@@ -22,5 +22,7 @@ export async function setSubmissionData(submissionFormData, TeamId){
     }catch(e){
         console.log(e);
         return({status:false})
+    }finally{
+        prisma.$disconnect();
     }
 }

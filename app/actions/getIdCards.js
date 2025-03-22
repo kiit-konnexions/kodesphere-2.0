@@ -19,5 +19,7 @@ export async function getIdCards(temaId){
     }catch(e){
         console.log(e)
         return  ({success:false,data:null});
+    }finally{
+        await prisma.$disconnect();
     }
 }

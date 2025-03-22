@@ -101,6 +101,8 @@ export async function registerTeam(teamName, track, members, leaderMail){
     }catch(e){
         console.log(e);
         return {success:false, message:"Something went wrong"};
+    }finally{
+        await prisma.$disconnect();
     }
 
 }

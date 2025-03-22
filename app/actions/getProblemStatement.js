@@ -26,5 +26,7 @@ export async function getProblemStatements(loggedInEmail) {
     },
   });
 
+  await prisma.$disconnect();
+
   return teamDetails;
 }

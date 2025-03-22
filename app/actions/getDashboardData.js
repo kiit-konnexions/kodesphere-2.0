@@ -35,6 +35,8 @@ export async function getDashboardData(loggedInEmail) {
 
   // console.log(teamParticipants);
 
+  await prisma.$disconnect();
+
   return {
     teamDetails,
     teamParticipants,

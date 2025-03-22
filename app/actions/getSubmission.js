@@ -24,7 +24,7 @@ export async function getSubmission(loggedInEmail){
         }
     })
 
-
+    await prisma.$disconnect();
     if(submissions){
         return ({status:true, TEAMID})
     }
