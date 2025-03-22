@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { checkReg } from '../actions/checkReg';
 import Link from 'next/link';
 import EventDateCounter from "@/components/EventDateCounter";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 
 const RegistrationPage = () => {
@@ -46,7 +47,7 @@ const RegistrationPage = () => {
     if(status==="loading" || pageStatus==="loading"){
         return(
           <div className='w-screen h-screen flex items-center justify-center text-xl'>
-            loading...
+              <LoadingSpinner />
           </div>
         )
     }
