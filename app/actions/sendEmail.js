@@ -30,7 +30,7 @@ export async function sendEmail(members, teamId, teamName){
       from: '"Konnexions IT Society" <noreply@konnexions.dev>',
       to: members[0].email,
       cc: cclist,
-      subject: "Congratulations 🎉 | Kodesphere 2.0 | Registration Successful",
+      subject: "Congratulations 🎉 | Kodessphere 2.0 | Registration Successful",
       html: mailtemplate,
     });
 
