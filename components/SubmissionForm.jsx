@@ -2,6 +2,7 @@
 import {setSubmissionData} from "@/app/actions/setSubmission";
 import React, {useState} from "react";
 import toast, {Toaster} from 'react-hot-toast';
+import {spaceGrotesk} from "@/app/(dashboard)/dashboard/page";
 
 function SubmissionForm({submissionStat, teamId}) {
     const [submission, setSubmission] = useState(submissionStat)
@@ -49,7 +50,7 @@ function SubmissionForm({submissionStat, teamId}) {
     return (
         <section
             aria-labelledby="submission-form"
-            className="bg-gray-100 p-8 rounded-none border border-gray-200 w-full mt-10"
+            className={`bg-gray-100 p-8 rounded-none border border-gray-200 w-full mt-10 ${spaceGrotesk.className}`}
         >
             <h2 id="submission-form" className="text-xl font-semibold mb-6 {}">Project Submission</h2>
             <Toaster/>

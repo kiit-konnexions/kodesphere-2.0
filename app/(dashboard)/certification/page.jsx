@@ -81,20 +81,20 @@ export default async function CertificatePage() {
 
     const session = await getServerSession(authOptions);
     const participant = await prisma.participant.findFirst({
-        where:{
-            email:session?.user.email
+        where: {
+            email: session?.user.email
         }
     })
 
     const participantName = participant?.name; // In a real app, this would come from a database or session
     const isLocked = isCertificateLocked();
 
-    if(!session || !participant){
-        return(
+    if (!session || !participant) {
+        return (
             <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
               401 | Unauthorized 🙅‍♂️
             </span>
-          )
+        )
     }
 
     return (

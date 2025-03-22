@@ -46,7 +46,7 @@ async function SubmissionPage() {
 
             <main className="relative z-10 flex-1 p-6 mt-16 mb-8 bg-white md:p-12 sm:mt-0">
                 <PageHeader title="SUBMISSION"/>
-        <SubmissionForm submissionStat={submission.status} teamId={submission.TEAMID}/>
+                <SubmissionForm submissionStat={submission.status} teamId={submission.TEAMID}/>
             </main>
         </div>
     );

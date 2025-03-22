@@ -2,6 +2,7 @@
 
 import {rasieHand} from "@/app/actions/raisehand";
 import {useState} from "react";
+import {spaceGrotesk} from "@/app/(dashboard)/dashboard/page";
 
 const RaiseHand = ({teamName, domainName, setRaiseHandDialog, setNotification}) => {
     const [roomNumber, setRoomNumber] = useState("");
@@ -34,7 +35,7 @@ const RaiseHand = ({teamName, domainName, setRaiseHandDialog, setNotification}) 
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+        <div className={`fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm ${spaceGrotesk.className}`}>
             <div className="w-[400px] bg-white border border-gray-200 shadow-lg font-space-grotesk">
                 <div className="flex items-center justify-between border-b border-gray-200 p-4 bg-gray-50">
                     <h2 className="text-xl font-semibold">Request Assistance</h2>

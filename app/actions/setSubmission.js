@@ -1,28 +1,28 @@
 "use server";
 
 import prisma from "@/lib/prisma";
-import { checkRateLimit } from "./rateLimit";
+import {checkRateLimit} from "./rateLimit";
 
-export async function setSubmissionData(submissionFormData, TeamId){
-     const rateLimit = await checkRateLimit();
-        if(!rateLimit){
-            console.log("Rate limit exceeded")
-            return false
-        }
-    try{
+export async function setSubmissionData(submissionFormData, TeamId) {
+    const rateLimit = await checkRateLimit();
+    if (!rateLimit) {
+        console.log("Rate limit exceeded")
+        return false
+    }
+    try {
         await prisma.submission.create({
-            data:{
+            data: {
                 TeamId: TeamId,
                 submissionData: submissionFormData
             }
         })
 
-        return ({success:true})
+        return ({success: true})
 
-    }catch(e){
+    } catch (e) {
         console.log(e);
-        return({status:false})
-    }finally{
+        return ({status: false})
+    } finally {
         prisma.$disconnect();
     }
 }

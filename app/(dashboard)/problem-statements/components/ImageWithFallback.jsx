@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from 'react';
+import {useState} from 'react';
 import Image from 'next/image';
 
-export default function ImageWithFallback({ src, alt, ...props }) {
+export default function ImageWithFallback({src, alt, ...props}) {
     const [error, setError] = useState(false);
 
     // Handle the image path - ensure local images use the correct format

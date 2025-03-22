@@ -1,6 +1,6 @@
 "use client";
 
-export default function MemberCard({ member, spaceGrotesk, index, isLoaded }) {
+export default function MemberCard({member, spaceGrotesk, index, isLoaded}) {
     return (
         <div
             className={`p-4 rounded-none bg-white border-gray-200 border
