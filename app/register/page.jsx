@@ -9,6 +9,7 @@ import {checkReg} from '../actions/checkReg';
 import Link from 'next/link';
 import EventDateCounter from "@/components/EventDateCounter";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import {spaceGrotesk} from "@/app/(dashboard)/dashboard/page";
 
 
 const RegistrationPage = () => {
@@ -55,7 +56,7 @@ const RegistrationPage = () => {
     if (isRegistered) {
         return (
             <div className="min-h-screen">
-                <div className="flex items-center justify-center min-h-screen bg-gray-50">
+                <div className={`flex items-center justify-center min-h-screen bg-gray-50 ${spaceGrotesk.className}`}>
                     <div
                         className="w-full max-w-md p-8 mx-4 bg-white rounded-2xl shadow-xl transform transition-all animate-fadeIn">
                         <div className="flex flex-col items-center text-center">
