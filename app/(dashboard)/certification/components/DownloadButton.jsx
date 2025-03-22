@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import {spaceGrotesk} from "@/app/(dashboard)/dashboard/page";
 
 export default function DownloadButton({ isLocked, participantName }) {
     const [isDownloading, setIsDownloading] = useState(false);
@@ -57,6 +58,7 @@ export default function DownloadButton({ isLocked, participantName }) {
           gap-3
           mx-auto
           min-w-[220px]
+          ${spaceGrotesk.className}
         `}
             >
                 {isLocked ? (

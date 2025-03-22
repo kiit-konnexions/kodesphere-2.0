@@ -3,16 +3,17 @@ import Sidebar from "@/components/SideBar";
 import CountdownTimer from "@/components/CountdownTimer";
 import ClientAnimatedTitle from "@/components/client/ClientAnimatedTitle";
 import DownloadButton from "@/app/(dashboard)/certification/components/DownloadButton";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import {spaceGrotesk} from "@/app/(dashboard)/dashboard/page";
 import prisma from "@/lib/prisma";
+import {getServerSession} from "next-auth";
+import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 
 // Certificate Preview Component
 const CertificatePreview = ({participantName, isLocked}) => {
     return (
         <div className={`relative w-full max-w-4xl mx-auto ${isLocked ? 'select-none' : ''}`}>
             <div className={`
-                      border-4 border-gray-300
+                      border-2 sm:border-4 border-gray-300
                       rounded-none
                       aspect-[1.4/1]
                       transition-all
@@ -27,31 +28,39 @@ const CertificatePreview = ({participantName, isLocked}) => {
                 />
 
                 {isLocked && (
-                    <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="absolute inset-0 flex items-center justify-center p-2 sm:p-4">
                         <div className="absolute inset-0 bg-black/15"
                              style={{
                                  backdropFilter: 'blur(8px)',
                                  WebkitBackdropFilter: 'blur(8px)',
-                                 transform: 'scale(0.98) scale(1.02)',
+                                 transform: 'scale(0.98)',
                                  filter: 'brightness(0.98)'
                              }}>
                         </div>
 
                         <div className={`
                                   relative z-10
-                                  p-8
-                                  rounded-none 
+                                  p-4 sm:p-6 md:p-8
+                                  rounded-none
                                   bg-white/90
                                   border border-gray-300
                                   shadow-xl
-                                  max-w-md
                                   w-full
+                                  max-w-[85%] sm:max-w-md
                                   text-center
                                 `}>
-                            <div className="text-5xl mb-6">🔒</div>
-                            <h3 className="text-xl font-bold mb-3">{participantName}&apos;s Certificate Locked</h3>
-                            <p className="mb-8 opacity-90">Your certificate will be available for download after your
-                                successful participation.</p>
+                            <div className="text-xl sm:text-2xl md:text-3xl mb-3 sm:mb-4 md:mb-6">
+                                <span
+                                    className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gray-100">
+                                    🔒
+                                </span>
+                            </div>
+                            <h3 className={`text-base sm:text-lg md:text-xl font-bold mb-2 ${spaceGrotesk.className}`}>
+                                {participantName}&apos;s Certificate Locked
+                            </h3>
+                            <p className="text-xs sm:text-sm md:text-base mb-3 sm:mb-5 opacity-90">
+                                Your certificate will be available for download after your successful participation.
+                            </p>
                         </div>
                     </div>
                 )}
@@ -92,25 +101,28 @@ export default async function CertificatePage() {
         <div className="flex min-h-screen bg-white text-black">
             <Sidebar/>
 
-            <main className="flex-1 p-6 md:p-12 bg-white relative z-10 mt-16 sm:mt-0 mb-8">
+            <main className="flex-1 p-4 sm:p-6 md:p-12 bg-white relative z-10 mt-16 sm:mt-0 mb-4 sm:mb-8">
                 {/* Header section with title and countdown */}
-                <div className="flex flex-col sm:flex-row justify-between items-start gap-6 mb-12 mt-4">
+                <div
+                    className="flex flex-col sm:flex-row justify-between items-start gap-4 sm:gap-6 mb-8 sm:mb-12 mt-2 sm:mt-4">
                     <div className="transform translate-y-0 opacity-100 max-w-full">
-                        <Suspense fallback={<div className="h-10 w-64 bg-gray-200 animate-pulse"></div>}>
+                        <Suspense fallback={<div className="h-8 sm:h-10 w-48 sm:w-64 bg-gray-200 animate-pulse"></div>}>
                             <ClientAnimatedTitle text="CERTIFICATE"/>
                         </Suspense>
                     </div>
 
-                    <div className="bg-gray-100 p-5 rounded-none border border-gray-300 shadow-sm w-full sm:w-auto">
+                    <div
+                        className="bg-gray-100 p-3 sm:p-5 rounded-none border border-gray-300 shadow-sm w-full sm:w-auto">
                         <CountdownTimer targetDate="April 2, 2025"/>
                     </div>
                 </div>
 
                 {/* Certificate message */}
-                <div className="mb-10 max-w-2xl mx-auto text-center">
-                    <h2 className="text-2xl font-bold mb-4">Konnexions Society - Kodesphere v2.0 Certificate</h2>
-                    <p className="text-gray-600">
-                        Thank you for your interest in the Kodesphere Hackathon! A certificate will
+                <div className="mb-6 sm:mb-10 max-w-2xl mx-auto text-center px-2">
+                    <h2 className={`text-xl sm:text-2xl font-bold mb-2 sm:mb-4 ${spaceGrotesk.className}`}>Konnexions
+                        Society - Kodessphere v2.0 Certificate</h2>
+                    <p className="text-sm sm:text-base text-gray-600">
+                        Thank you for your interest in the Kodessphere v2.0 Hackathon! A certificate will
                         be available for download after the event concludes.
                     </p>
                 </div>
