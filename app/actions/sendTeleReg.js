@@ -1,6 +1,6 @@
 "use server";
 
-export async function sendTeleReg(teamid,teamName,members) {
+export async function sendTeleReg(teamid,teamName,members,track) {
   // console.log(data);
   const Members = JSON.stringify(members);
 
@@ -8,7 +8,7 @@ export async function sendTeleReg(teamid,teamName,members) {
   // Example: await prisma.user.create({ data: { name, email } });
 
   // Send Telegram notification
-  const message = `Registration Received!\n👤 Team Name: ${teamName}\n📧 TeamID: ${teamid} \n Members:${Members}`;
+  const message = `Registration Received!\n👤 Team Name: ${teamName}\n📧 TeamID: ${teamid}\nTrack: ${track} \n Members:${Members}`;
 
   const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
   const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID_REG;

@@ -3,13 +3,13 @@
 import {useEffect, useState} from 'react';
 import {useSession} from 'next-auth/react';
 import {registerTeam} from '@/app/actions/registerTeam';
-import {useRouter} from 'next/navigation';
+// import {useRouter} from 'next/navigation';
 import toast, {Toaster} from 'react-hot-toast';
 import {sendEmail} from '@/app/actions/sendEmail';
 import {sendTeleReg} from '@/app/actions/sendTeleReg';
 
-export default function RegistrationForm() {
-    const router = useRouter();
+export default function RegistrationForm({setIsRegistered}) {
+    // const router = useRouter();
     const [teamName, setTeamName] = useState('');
     const [loading, setLoading] = useState(false);
     const {data: session, status} = useSession();
@@ -119,9 +119,9 @@ export default function RegistrationForm() {
             const res = await registerTeam(teamName, track, members, session?.user.email);
             if (res.success) {
                 await sendEmail(members, res.id, teamName);
-                await sendTeleReg(res.id, teamName, members);
+                await sendTeleReg(res.id, teamName, members, track);
                 toast.success(res.message);
-                router.push('/');
+                setIsRegistered(true);
             } else {
                 toast.error(res.message);
             }
