@@ -1,8 +1,11 @@
 import {Suspense} from "react";
-import Sidebar from "@/app/components/SideBar";
-import CountdownTimer from "@/app/components/CountdownTimer";
-import ClientAnimatedTitle from "@/app/components/client/ClientAnimatedTitle";
+import Sidebar from "@/components/SideBar";
+import CountdownTimer from "@/components/CountdownTimer";
+import ClientAnimatedTitle from "@/components/client/ClientAnimatedTitle";
 import DownloadButton from "@/app/(dashboard)/certification/components/DownloadButton";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import prisma from "@/lib/prisma";
 
 // Certificate Preview Component
 const CertificatePreview = ({participantName, isLocked}) => {
@@ -46,7 +49,7 @@ const CertificatePreview = ({participantName, isLocked}) => {
                                   text-center
                                 `}>
                             <div className="text-5xl mb-6">🔒</div>
-                            <h3 className="text-xl font-bold mb-3">Certificate Locked</h3>
+                            <h3 className="text-xl font-bold mb-3">{participantName}&apos;s Certificate Locked</h3>
                             <p className="mb-8 opacity-90">Your certificate will be available for download after your
                                 successful participation.</p>
                         </div>
@@ -64,10 +67,26 @@ function isCertificateLocked() {
     return currentDate < unlockDate;
 }
 
-export default function CertificatePage() {
+export default async function CertificatePage() {
     // Get data on the server
-    const participantName = "Sahil Choudhary"; // In a real app, this would come from a database or session
+
+    const session = await getServerSession(authOptions);
+    const participant = await prisma.participant.findFirst({
+        where:{
+            email:session?.user.email
+        }
+    })
+
+    const participantName = participant?.name; // In a real app, this would come from a database or session
     const isLocked = isCertificateLocked();
+
+    if(!session || !participant){
+        return(
+            <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
+              401 | Unauthorized 🙅‍♂️
+            </span>
+          )
+    }
 
     return (
         <div className="flex min-h-screen bg-white text-black">

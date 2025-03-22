@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import CountdownTimer from "@/app/components/CountdownTimer";
-import ClientAnimatedTitle from "@/app/components/client/ClientAnimatedTitle";
+import CountdownTimer from "@/components/CountdownTimer";
+import ClientAnimatedTitle from "@/components/client/ClientAnimatedTitle";
 import MemberCard from "@/app/(dashboard)/dashboard/components/MemberCard";
 
 export default function DashboardClient({ teamName, teamMembers, spaceGrotesk }) {
@@ -62,7 +62,7 @@ export default function DashboardClient({ teamName, teamMembers, spaceGrotesk })
         </h3>
 
         <div className="grid gap-4">
-          {teamMembers.map((member, index) => (
+          {teamMembers?.map((member, index) => (
             <MemberCard
               key={member.rollNo}
               member={member}

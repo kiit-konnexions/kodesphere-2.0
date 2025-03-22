@@ -1,5 +1,5 @@
-import Sidebar from "@/app/components/SideBar";
-import AnimatedTitle from "@/app/components/AnimatedTitle";
+import Sidebar from "@/components/SideBar";
+import AnimatedTitle from "@/components/AnimatedTitle";
 import { Space_Grotesk } from "next/font/google";
 import DomainBadge from "./components/DomainBadge";
 import ProblemStatementDetail from "./components/ProblemStatementDetail";
@@ -7,6 +7,8 @@ import ClientWrapper from "./components/ClientWrapper";
 import { getProblemStatementsDescriptions } from "./data/problemStatements";
 import CountdownWrapper from "@/app/(dashboard)/problem-statements/components/CountdownWrapper";
 import { getProblemStatements } from "@/app/actions/getProblemStatement";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -14,12 +16,22 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export default async function ProblemStatementPage() {
-  // const loggedInEmail = await getServerSession();
-  // const teamDetails = await getProblemStatements(loggedInEmail);
-  const teamDetails = await getProblemStatements();
+  const session = await getServerSession(authOptions);
+
+
+  const teamDetails = await getProblemStatements(session?.user.email);
+  // const teamDetails = await getProblemStatements();
 
   const problemStatements = getProblemStatementsDescriptions();
-  const currentProblem = problemStatements.find((p) => p.domain === teamDetails.Track);
+  const currentProblem = problemStatements.find((p) => p.domain === teamDetails?.Track);
+
+  if(!session || !teamDetails){
+    return(
+      <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
+        401 | Unauthorized 🙅‍♂️
+      </span>
+    )
+  }
 
   if (!currentProblem) {
     return <div>Problem statement not found</div>;

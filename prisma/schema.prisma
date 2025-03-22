@@ -44,9 +44,7 @@ model Participant {
 
 model Submission {
   TeamId         String   @id
-  leaderEmail    String   @unique
-  githubLink     String
-  deploymentLink String?
+  submissionData Json
   submittedAt    DateTime @default(now())
 
   Team Team @relation(fields: [TeamId], references: [TeamId])

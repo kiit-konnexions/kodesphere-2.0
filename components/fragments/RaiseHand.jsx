@@ -3,7 +3,7 @@
 import { rasieHand } from "@/app/actions/raisehand";
 import { useState } from "react";
 
-const RaiseHand = ({ teamName, domainName, setRaiseHandDialog }) => {
+const RaiseHand = ({ teamName, domainName, setRaiseHandDialog, setNotification }) => {
   const [roomNumber, setRoomNumber] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -16,16 +16,24 @@ const RaiseHand = ({ teamName, domainName, setRaiseHandDialog }) => {
           domainName: domainName,
         };
         const response = await rasieHand(data);
-        setMessage(response.message);
+        // setMessage(response.message);
         setLoading(false);
+        setNotification({
+          show: true,
+          message: response.message,
+          subtitle: "",
+        });
+        setTimeout(() => {
+          setNotification({ show: false, message: "", subtitle: "" });
+        }, 3000);
     }else{
         setMessage("Please Enter Room Number!");
         setLoading(false);
     }
   };
   return (
-    <div className="w-screen bg-black/30 h-screen flex items-center justify-center fixed top-0 left-0">
-      <div className="w-[400px] h-[300px] bg-white p-8 rounded-xl shadow-lg flex flex-col items-center justify-center gap-5">
+    <div className="w-screen bg-black/30 h-screen flex items-center justify-center fixed top-0 left-0 z-50">
+      <div className="w-[400px] h-[300px] bg-white p-8 shadow-lg flex flex-col items-center justify-center gap-5">
         <button
           onClick={() => {
             setRaiseHandDialog(false);
@@ -36,8 +44,8 @@ const RaiseHand = ({ teamName, domainName, setRaiseHandDialog }) => {
         </button>
         <input
           type="text"
-          className="bg-transparent border-gray-500 text-black text-center border text-2xl px-2 py-3 outline-blue-400 rounded-xl"
-          placeholder="Room Name"
+          className="bg-transparent border-gray-500 text-black text-center border text-xl px-2 py-3 outline-blue-400 rounded-xl"
+          placeholder="Room Number"
           value={roomNumber}
           onChange={(e)=>setRoomNumber(e.target.value)}
         />

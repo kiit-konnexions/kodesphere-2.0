@@ -1,8 +1,10 @@
 import {Suspense} from "react";
-import Sidebar from "@/app/components/SideBar";
-import ClientAnimatedTitle from "@/app/components/client/ClientAnimatedTitle";
-import ClientCountdownTimer from "@/app/components/client/ClientCountdownTimer";
+import Sidebar from "@/components/SideBar";
+import ClientAnimatedTitle from "@/components/client/ClientAnimatedTitle";
+import ClientCountdownTimer from "@/components/client/ClientCountdownTimer";
 import {getRules} from "@/app/(dashboard)/rules/data/data";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 const rules = getRules();
 
@@ -54,7 +56,16 @@ const RulesContainer = ({ rules }) => {
     );
 };
 
-function RulesPage() {
+async function RulesPage() {
+    const session = await getServerSession(authOptions);
+    
+        if(!session){
+            return(
+                <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
+                  401 | Unauthorized 🙅‍♂️
+                </span>
+              )
+        }
     return (
         <div className="flex min-h-screen bg-white text-black">
             <Sidebar />

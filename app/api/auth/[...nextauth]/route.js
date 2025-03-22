@@ -12,7 +12,7 @@ export const authOptions = {
     strategy: "jwt",
   },
   pages: {
-    signIn: "/events",
+    signIn: "",
   },
   secret: process.env.SECRET,
 };

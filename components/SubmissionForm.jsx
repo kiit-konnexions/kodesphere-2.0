@@ -1,7 +1,11 @@
 'use client';
+import { setSubmissionData } from "@/app/actions/setSubmission";
 import React, { useState } from "react";
+import toast, { Toaster } from 'react-hot-toast';
 
-function SubmissionForm() {
+function SubmissionForm({submissionStat, teamId}) {
+  const [submission, setSubmission] = useState(submissionStat)
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     githubLink: "",
     deploymentLink: "",
@@ -12,23 +16,43 @@ function SubmissionForm() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
-    if (!formData.githubLink) {
-      alert("GitHub link is required.");
-      return;
+    if(!teamId){
+      toast.error("Team Details Not Found !");
+      return
     }
-    console.log("Form submitted:", formData);
-    alert("Project submitted successfully!");
+    
+    const sub = await setSubmissionData(formData, teamId);
+    if(sub.success){
+      toast.success("Submission Successful !");
+      setLoading(false);
+      setSubmission(true);
+    }else{
+      toast.error("Unable to Submit !");
+      setLoading(false);
+    }
   };
 
+  if(submission){
+    return(
+      <div className="w-full flex items-center justify-center">
+        <span className="text-2xl font-bold flex items-center gap-2">
+          <img src="/icons/check.svg" className="w-[30px] h-[30px]"/>
+          SUBMITTED !
+        </span>
+      </div>
+    )
+  }
+
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold mb-6 text-center">Project Submission</h1>
+    <div className="flex items-center justify-center">
+      <Toaster />
+      <div className="w-full max-w-md p-6">
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="githubLink" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="githubLink" className="block mb-1 text-sm font-medium text-gray-700">
               GitHub Link:
             </label>
             <input
@@ -43,7 +67,7 @@ function SubmissionForm() {
             />
           </div>
           <div className="mb-6">
-            <label htmlFor="deploymentLink" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="deploymentLink" className="block mb-1 text-sm font-medium text-gray-700">
               Deployment Link (optional):
             </label>
             <input
@@ -60,13 +84,21 @@ function SubmissionForm() {
             <p className="text-sm text-gray-600">
               <span className="font-semibold">Note:</span> You can submit only once.
             </p>
-            <button
-              type="submit"
-              className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
-            >
-              Submit
-            </button>
           </div>
+{          !loading?<button
+            type="submit"
+            className="w-full px-4 py-2 mt-5 text-white bg-black rounded-md cursor-pointer hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+          >
+            Submit
+          </button>
+          :
+          <button
+            disabled
+            className="w-full px-4 py-2 mt-5 text-white bg-gray-700 rounded-md cursor-pointer hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+          >
+            Submitting
+          </button>
+          }
         </form>
       </div>
     </div>

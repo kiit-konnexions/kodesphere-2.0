@@ -10,7 +10,7 @@ export async function rasieHand(data) {
   // Example: await prisma.user.create({ data: { name, email } });
 
   // Send Telegram notification
-  const message = `Someone Needs Your Help!\n👤 Team Name: ${teamName}\n📧 Room: ${roomNumber} \n Domain : ${domainName}`;
+  const message = `Someone Needs Your Help!\n👤 Team Name: ${teamName}\n🤚 Room: ${roomNumber} \n💻 Domain : ${domainName}`;
 
   const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
   const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
