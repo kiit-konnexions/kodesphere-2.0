@@ -95,7 +95,7 @@ const RegistrationPage = () => {
   return (
     <div className='flex min-h-screen md:h-screen md:p-4 p-2 gap-4 bg-gray-200 md:flex-row flex-col'>
         <SideInfoBar/>
-        <RegistrationForm/>
+        <RegistrationForm setIsRegistered={setIsRegistered}/>
     </div>
   )
 }
