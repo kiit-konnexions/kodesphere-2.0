@@ -85,8 +85,8 @@ const SideInfoBar = () => {
           <img src="/icons/call.svg" alt="contact" className="h-[20px]" />
           Contact Us
         </button>
-        <Link href="/event-guide" className="text-black font-medium flex items-center gap-2 hover:underline">
-          <img src="/icons/guide.svg" alt="event_guide" className="h-[20px]" />
+        <Link href="/event_guide.pdf" className="text-black font-medium flex items-center gap-2 hover:underline">
+          <img src="/icons/guide.svg" alt="event_guide" className="h-[20px]"/>
           Event Guide
         </Link>
       </div>
