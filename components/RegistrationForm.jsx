@@ -1,6 +1,6 @@
 'use client';
 
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useSession} from 'next-auth/react';
 import {registerTeam} from '@/app/actions/registerTeam';
 // import {useRouter} from 'next/navigation';
@@ -15,9 +15,21 @@ export default function RegistrationForm({setIsRegistered}) {
     const {data: session, status} = useSession();
     const [track, setTrack] = useState('web');
     const [members, setMembers] = useState([
-        {id: 1, name: session?.user.name, phone: '', email: session?.user.email},
+        {id: 1, name: session?.user?.name || '', phone: '', email: session?.user?.email || ''},
     ]);
     const [errors, setErrors] = useState({});
+
+    useEffect(() => {
+        if (session?.user) {
+            setMembers(members =>
+                members.map(member =>
+                    member.id === 1
+                        ? {...member, name: session.user.name || '', email: session.user.email || ''}
+                        : member
+                )
+            );
+        }
+    }, [session]);
 
     const addMember = () => {
         const newId =
@@ -26,6 +38,11 @@ export default function RegistrationForm({setIsRegistered}) {
             ...members,
             {id: newId, name: '', phone: '', email: ''},
         ]);
+
+        // Clear teamSize error when adding a new member
+        if (errors.teamSize) {
+            setErrors({...errors, teamSize: null});
+        }
     };
 
     const removeMembers = (id) => {
@@ -49,6 +66,12 @@ export default function RegistrationForm({setIsRegistered}) {
         const newErrors = {};
         let isValid = true;
 
+        // Team size validation (minimum 2 members)
+        if (members.length < 2) {
+            newErrors.teamSize = 'Your team must have at least 2 members';
+            isValid = false;
+        }
+
         // Team name validation
         if (!teamName?.trim()) {
             newErrors.teamName = 'Team name is required';
@@ -57,6 +80,7 @@ export default function RegistrationForm({setIsRegistered}) {
 
         // Members validation
         members.forEach(member => {
+            // Existing validation code remains the same
             if (!member.name?.trim()) {
                 newErrors[`member-${member.id}-name`] = 'Name is required';
                 isValid = false;
@@ -159,18 +183,19 @@ export default function RegistrationForm({setIsRegistered}) {
                     <div className='flex items-center gap-2'>
                         <h2 className='text-base/7 font-semibold'>Member Details</h2>
                         <div className='group relative'>
-              <span
-                  className='bg-gray-50 text-gray-800 text-xs px-2.5 py-1 rounded-full border border-gray-200 drop-shadow-[0_1px_1px_rgba(0,0,0,0.03)] font-medium inline-flex items-center gap-1'>
-                {members.length}/3 members added
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
-                     stroke="currentColor" className="w-3.5 h-3.5 text-gray-500">
-                  <path strokeLinecap="round" strokeLinejoin="round"
-                        d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/>
-                </svg>
-              </span>
+                            <span
+                                className='bg-gray-50 text-gray-800 text-xs px-2.5 py-1 rounded-full border border-gray-200 drop-shadow-[0_1px_1px_rgba(0,0,0,0.03)] font-medium inline-flex items-center gap-1'>
+                                {members.length}/3 members added
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     strokeWidth={1.5}
+                                     stroke="currentColor" className="w-3.5 h-3.5 text-gray-500">
+                                    <path strokeLinecap="round" strokeLinejoin="round"
+                                          d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/>
+                                </svg>
+                            </span>
                             <div
                                 className='absolute bottom-full left-1/2 transform -translate-x-1/2 mb-1.5 hidden group-hover:block opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black text-white text-xs px-2 py-1 rounded shadow-md whitespace-nowrap z-10 pointer-events-none'>
-                                1-3 members teams are allowed
+                                Minimum: 2 | Maximum: 3
                                 <div
                                     className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-black"></div>
                             </div>
@@ -179,6 +204,7 @@ export default function RegistrationForm({setIsRegistered}) {
                     <p className='mt-1 text-sm/6 pb-4'>
                         Please provide the details of all team members
                     </p>
+                    {errors.teamSize && <p className="text-red-500 text-sm mb-3 font-medium">{errors.teamSize}</p>}
 
                     <div id='membersList'>
                         {members.map((member, index) => (

@@ -4,16 +4,11 @@ import Link from "next/link";
 import React from "react";
 
 const LoginSection = () => {
-  const {data:session, status} = useSession();
+  const { data: session, status } = useSession();
   return (
     <div className=" md:w-[75%] w-full rounded-xl bg-white h-fit flex items-start justify-start flex-col md:p-10 p-5 gap-5">
       <h2 className="text-3xl font-semibold flex items-center justify-center gap-3">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="0.98em"
-          height="1em"
-          viewBox="0 0 256 262"
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" width="0.98em" height="1em" viewBox="0 0 256 262">
           <path
             fill="#4285f4"
             d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622l38.755 30.023l2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"
@@ -39,21 +34,32 @@ const LoginSection = () => {
       <p className="bg-yellow-100 text-yellow-800 rounded-xl p-3">
         Only 1 team member needs to register the team. (The Person Registering will automatically become the team leader)
       </p>
-      {status!=="authenticated"?<button
-        onClick={() => signIn("google", { callbackUrl: '/register' })}
-        className=" bg-gray-200 p-3 rounded-xl hover:bg-gray-400 trasnsition-all ease-in-out duration-300 cursor-pointer"
-      >
-        Sign in with google
-      </button>
-      :
-      <div className="flex items-center gap-3">
-        <Link href="/register" className=" bg-gray-200 p-3 rounded-xl hover:bg-gray-400 trasnsition-all ease-in-out duration-300 cursor-pointer">
-          Register
-        </Link>
-        <button onClick={() => signOut()} className=" bg-gray-200 p-3 rounded-xl hover:bg-gray-400 trasnsition-all ease-in-out duration-300 cursor-pointer">Sign out</button>
-      </div>
-      }
-
+      {status !== "authenticated" ? (
+        <button
+          onClick={() => signIn("google", { callbackUrl: "/register" })}
+          className="flex items-center gap-2 bg-neutral-100 py-3 px-4 rounded-full hover:bg-gray-400 trasnsition-all ease-in-out duration-300 cursor-pointer"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="M21.594 11.08H12.32v2.746h6.656c-.356 3.812-3.457 5.46-6.462 5.46c-3.813 0-7.205-2.972-7.205-7.27c0-4.135 3.23-7.27 7.205-7.27c3.037 0 4.879 1.971 4.879 1.971l1.874-1.97S16.748 2 12.386 2C6.634 1.968 2.24 6.782 2.24 11.984C2.24 17.024 6.376 22 12.483 22c5.395 0 9.272-3.651 9.272-9.111c.033-1.131-.161-1.81-.161-1.81"
+            ></path>
+          </svg>
+          <span>Sign in with google</span>
+        </button>
+      ) : (
+        <div className="flex items-center gap-3">
+          <Link href="/register" className=" bg-gray-200 p-3 rounded-xl hover:bg-gray-400 trasnsition-all ease-in-out duration-300 cursor-pointer">
+            Register
+          </Link>
+          <button
+            onClick={() => signOut()}
+            className=" bg-gray-200 p-3 rounded-xl hover:bg-gray-400 trasnsition-all ease-in-out duration-300 cursor-pointer"
+          >
+            Sign out
+          </button>
+        </div>
+      )}
     </div>
   );
 };
