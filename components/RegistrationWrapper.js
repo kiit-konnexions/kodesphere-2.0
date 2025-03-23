@@ -17,6 +17,8 @@ function RegistrationWrapper() {
         if (res.success) {
           setIsRegistered(true);
           setTid(res.tid);
+        } else {
+          setIsRegistered(false);
         }
       };
       cr();

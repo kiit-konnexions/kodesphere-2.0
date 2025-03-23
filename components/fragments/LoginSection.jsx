@@ -8,7 +8,7 @@ import RegistrationWrapper from "../RegistrationWrapper";
 const LoginSection = () => {
   const { data: session, status } = useSession();
   return (
-    <div className="w-full h-svh overflow-y-auto py-4 pr-4">
+    <div className="w-full h-fit md:h-svh md:overflow-y-auto py-4 pr-4">
       <div className="bg-white rounded-xl p-6">
         <div>
           {status == "authenticated" ? (
