@@ -28,7 +28,7 @@ function RegistrationWrapper() {
       {isRegistered == null ? (
         "Checking registration status"
       ) : isRegistered == false ? (
-        <RegistrationForm />
+        <RegistrationForm setIsRegistered={setIsRegistered} />
       ) : isRegistered == true ? (
         <RegisteredCard tid={tid} />
       ) : null}

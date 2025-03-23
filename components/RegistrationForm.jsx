@@ -8,7 +8,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { sendEmail } from "@/app/actions/sendEmail";
 import { sendTeleReg } from "@/app/actions/sendTeleReg";
 
-export default function RegistrationForm() {
+export default function RegistrationForm({ setIsRegistered }) {
   // const router = useRouter();
   const [teamName, setTeamName] = useState("");
   const [loading, setLoading] = useState(false);
