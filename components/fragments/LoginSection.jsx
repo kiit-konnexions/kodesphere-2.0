@@ -9,7 +9,7 @@ const LoginSection = () => {
   const { data: session, status } = useSession();
   return (
     <div className="w-full h-fit min-h-svh md:h-svh md:overflow-y-auto py-4 md:pr-4">
-      <div className="bg-white rounded-xl p-6">
+      <div className="bg-white md:rounded-xl px-4 py-8 md:p-6">
         <div>
           {status == "authenticated" ? (
             <div>
@@ -22,7 +22,7 @@ const LoginSection = () => {
                 </svg>
                 <h1 className="text-2xl font-semibold text-neutral-800">Greetings</h1>
               </div>
-              <p className="mt-4 text-base text-neutral-600">
+              <p className="mt-4 text-sm md:text-base text-neutral-600 leading-7">
                 Please fill the form below to register your team. Min 2 and Max 3 members are allowed in a team.
               </p>
             </div>
@@ -54,7 +54,7 @@ const LoginSection = () => {
           ) : null}
         </div>
 
-        <p className="bg-yellow-100 text-sm md:text-base mt-4 w-fit rounded-full text-yellow-800 px-5 py-2">
+        <p className="bg-yellow-100 text-sm md:text-base mt-4 w-fit rounded-md md:rounded-full text-yellow-800 px-3 py-2">
           Only 1 team member needs to register the team.
         </p>
 
