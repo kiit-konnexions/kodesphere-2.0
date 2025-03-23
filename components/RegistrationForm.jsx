@@ -8,7 +8,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { sendEmail } from "@/app/actions/sendEmail";
 import { sendTeleReg } from "@/app/actions/sendTeleReg";
 
-export default function RegistrationForm({ setIsRegistered }) {
+export default function RegistrationForm({ setIsRegistered, setTid }) {
   // const router = useRouter();
   const [teamName, setTeamName] = useState("");
   const [loading, setLoading] = useState(false);
@@ -105,9 +105,10 @@ export default function RegistrationForm({ setIsRegistered }) {
     try {
       const res = await registerTeam(teamName, track, members, session?.user.email);
       if (res.success) {
-        await sendEmail(members, res.id, teamName);
+        process.env.NODE_ENV == "production" && (await sendEmail(members, res.id, teamName));
         await sendTeleReg(res.id, teamName, members, track);
         toast.success(res.message);
+        setTid(res.id);
         setIsRegistered(true);
       } else {
         toast.error(res.message);
