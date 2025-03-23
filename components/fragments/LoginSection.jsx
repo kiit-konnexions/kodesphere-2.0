@@ -8,7 +8,7 @@ import RegistrationWrapper from "../RegistrationWrapper";
 const LoginSection = () => {
   const { data: session, status } = useSession();
   return (
-    <div className="w-full h-fit md:h-svh md:overflow-y-auto py-4 md:pr-4">
+    <div className="w-full h-fit min-h-svh md:h-svh md:overflow-y-auto py-4 md:pr-4">
       <div className="bg-white rounded-xl p-6">
         <div>
           {status == "authenticated" ? (
@@ -54,7 +54,9 @@ const LoginSection = () => {
           ) : null}
         </div>
 
-        <p className="bg-yellow-100 mt-4 w-fit rounded-full text-yellow-800 px-5 py-2">Only 1 team member needs to register the team.</p>
+        <p className="bg-yellow-100 text-sm md:text-base mt-4 w-fit rounded-full text-yellow-800 px-5 py-2">
+          Only 1 team member needs to register the team.
+        </p>
 
         <div className="mt-5">
           {status == "unauthenticated" ? (
