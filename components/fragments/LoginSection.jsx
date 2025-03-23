@@ -8,8 +8,8 @@ import RegistrationWrapper from "../RegistrationWrapper";
 const LoginSection = () => {
   const { data: session, status } = useSession();
   return (
-    <div className="w-full h-fit md:h-svh md:overflow-y-auto py-4 md:pr-4">
-      <div className="bg-white rounded-xl p-6">
+    <div className="w-full h-fit min-h-svh md:h-svh md:overflow-y-auto py-4 md:pr-4">
+      <div className="bg-white md:rounded-xl px-4 py-8 md:p-6">
         <div>
           {status == "authenticated" ? (
             <div>
@@ -20,9 +20,9 @@ const LoginSection = () => {
                     d="M6.002 4a1.998 1.998 0 1 1 3.996 0a1.998 1.998 0 0 1-3.996 0M8 3.002a.998.998 0 1 0 0 1.996a.998.998 0 0 0 0-1.996M11 4.5a1.5 1.5 0 1 1 3 0a1.5 1.5 0 0 1-3 0m1.5-.5a.5.5 0 1 0 0 1a.5.5 0 0 0 0-1m-9-1a1.5 1.5 0 1 0 0 3a1.5 1.5 0 0 0 0-3M3 4.5a.5.5 0 1 1 1 0a.5.5 0 0 1-1 0M4.268 7A2 2 0 0 0 4 8H2v2.5a1.5 1.5 0 0 0 2.096 1.377c.074.331.19.647.34.942A2.5 2.5 0 0 1 1 10.5V8a1 1 0 0 1 1-1zm7.296 5.819A2.5 2.5 0 0 0 15 10.5V8a1 1 0 0 0-1-1h-2.268c.17.294.268.635.268 1h2v2.5a1.5 1.5 0 0 1-2.096 1.377q-.114.498-.34.942M6 6.999a1 1 0 0 0-1 1V11a3 3 0 0 0 6 0V8a1 1 0 0 0-1-1zm0 1h4V11a2 2 0 0 1-4 0z"
                   />
                 </svg>
-                <h1 className="text-2xl font-semibold text-neutral-800">Team page</h1>
+                <h1 className="text-2xl font-semibold text-neutral-800">Greetings</h1>
               </div>
-              <p className="mt-4 text-base text-neutral-600">
+              <p className="mt-4 text-sm md:text-base text-neutral-600 leading-7">
                 Please fill the form below to register your team. Min 2 and Max 3 members are allowed in a team.
               </p>
             </div>
@@ -54,7 +54,9 @@ const LoginSection = () => {
           ) : null}
         </div>
 
-        <p className="bg-yellow-100 mt-4 w-fit rounded-full text-yellow-800 px-5 py-2">Only 1 team member needs to register the team.</p>
+        <p className="bg-yellow-100 text-sm md:text-base mt-4 w-fit rounded-md md:rounded-full text-yellow-800 px-3 py-2">
+          Only 1 team member needs to register the team.
+        </p>
 
         <div className="mt-5">
           {status == "unauthenticated" ? (
