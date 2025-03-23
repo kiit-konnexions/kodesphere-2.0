@@ -163,7 +163,7 @@ export default function RegistrationForm({ setIsRegistered }) {
               id="track"
               value={track}
               onChange={(e) => setTrack(e.target.value)}
-              className="mt-2.5 w-full rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-black sm:text-sm/6"
+              className="mt-2 w-full rounded-md bg-white h-12 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-black sm:text-sm/6"
               required
             >
               <option value="web">Web Development</option>
