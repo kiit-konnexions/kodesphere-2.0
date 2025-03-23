@@ -16,9 +16,9 @@ const SideInfoBar = () => {
   };
 
   return (
-    <div className="md:w-[370px] w-full h-full shrink-0 pl-0 py-4 md:pr-0 md:pl-4">
+    <div className="md:w-[370px] w-full h-fit md:h-full shrink-0 pl-0 py-4 md:pr-0 md:pl-4">
       <div className="w-full h-full p-4 bg-white rounded-xl flex flex-col">
-        <div className="-mt-2">
+        <div className="mt-2 mb-6">
           <div className="flex items-center justify-between w-full flex-wrap">
             <img className="w-auto h-[45px] shrink-0" src="/images/ksaclogo.png" />
             <img className="w-auto h-[60px] shrink-0" src="/images/konnexionslogo.png" />
