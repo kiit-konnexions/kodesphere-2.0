@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const SideInfoBar = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
   const router = useRouter();
 
   const toggleText = () => {
@@ -29,7 +29,7 @@ const SideInfoBar = () => {
           <img src="/kodespherelogo.png" className="h-16 rounded-xl mt-5" />
 
           <div className="mt-2">
-            <p className={`text-sm font-medium text-neutral-500 transition-all duration-300 leading-7 line-clamp-5`}>
+            <p className={`text-sm font-medium text-neutral-500 transition-all duration-300 leading-7 line-clamp-4`}>
               Get ready to ignite your coding passion! Konnexions is rolling out the red carpet for the epic hackathon experience, Kodessphere.
               Prepare to dive into a whirlwind of innovation, teamwork, and the latest tech marvels. Whether you're a coding wizard or a rising star,
               seize this moment to dazzle and redefine the digital landscape. Don't let this opportunity slip through your fingertips! Secure your
@@ -81,7 +81,36 @@ const SideInfoBar = () => {
           </Link>
         </div>
 
-        {/* <div className="fixed inset-0 h-full w-full bg-black/50 flex"></div> */}
+        {isExpanded && (
+          <div className="fixed z-10 inset-0 h-full w-full bg-gradient-to-b from-transparent to-black/50 flex items-center justify-center">
+            <div className="w-full max-w-lg bg-white rounded-xl">
+              <div className="flex items-center justify-between px-5">
+                <img src="/kodespherelogo.png" className="h-12 rounded-xl mt-5 -ml-1" />
+                <button className="h-10 w-10 flex items-center justify-center bg-neutral-100 text-neutral-700 rounded-full" onClick={toggleText}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-miterlimit="10"
+                      stroke-width="2"
+                      d="m7.757 16.243l8.486-8.486m0 8.486L7.757 7.757"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div className="px-5 pb-7">
+                <p className="text-sm leading-7 text-neutral-500">
+                  Get ready to ignite your coding passion! Konnexions is rolling out the red carpet for the epic hackathon experience, Kodessphere.
+                  Prepare to dive into a whirlwind of innovation, teamwork, and the latest tech marvels. Whether you're a coding wizard or a rising
+                  star, seize this moment to dazzle and redefine the digital landscape. Don't let this opportunity slip through your fingertips!
+                  Secure your spot now —register fast!
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
