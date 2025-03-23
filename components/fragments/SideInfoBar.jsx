@@ -75,7 +75,7 @@ const SideInfoBar = () => {
             <img src="/icons/call.svg" alt="contact" className="h-[20px]" />
             Contact Us
           </button>
-          <Link href="/event-guide" className="text-black font-medium flex items-center gap-2 hover:underline">
+          <Link href="/event-guide.pdf" className="text-black font-medium flex items-center gap-2 hover:underline">
             <img src="/icons/guide.svg" alt="event_guide" className="h-[20px]" />
             Event Guide
           </Link>
@@ -87,20 +87,20 @@ const SideInfoBar = () => {
               <div className="flex items-center justify-between px-5">
                 <img src="/kodespherelogo.png" className="h-12 rounded-xl mt-5 -ml-1" />
                 <button className="h-10 w-10 flex items-center justify-center bg-neutral-100 text-neutral-700 rounded-full" onClick={toggleText}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6" viewBox="0 0 24 24">
                     <path
                       fill="none"
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-miterlimit="10"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeMiterlimit={10}
+                      strokeWidth={2}
                       d="m7.757 16.243l8.486-8.486m0 8.486L7.757 7.757"
-                    />
+                    ></path>
                   </svg>
                 </button>
               </div>
-              <div className="px-5 pb-7">
+              <div className="px-5 pb-7 mt-2">
                 <p className="text-sm leading-7 text-neutral-500">
                   Get ready to ignite your coding passion! Konnexions is rolling out the red carpet for the epic hackathon experience, Kodessphere.
                   Prepare to dive into a whirlwind of innovation, teamwork, and the latest tech marvels. Whether you're a coding wizard or a rising
