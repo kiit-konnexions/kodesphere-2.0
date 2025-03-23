@@ -19,6 +19,7 @@ export async function checkReg(email) {
       return { success: true, tid: result.TeamId };
     }
     return { success: false, message: "Participant not found" };
-  } catch (error) {}
-  return { success: false };
+  } catch (error) {
+    return { success: false };
+  }
 }
