@@ -79,6 +79,8 @@ const SideInfoBar = () => {
           Event Guide
         </Link>
       </div>
+
+      <div className="fixed inset-0 h-full w-full bg-black/50 flex"></div>
     </div>
   );
 };
