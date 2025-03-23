@@ -105,7 +105,7 @@ export default function RegistrationForm({ setIsRegistered, setTid }) {
     try {
       const res = await registerTeam(teamName, track, members, session?.user.email);
       if (res.success) {
-        await sendEmail(members, res.id, teamName);
+        process.env.NODE_ENV == "production" && (await sendEmail(members, res.id, teamName));
         await sendTeleReg(res.id, teamName, members, track);
         toast.success(res.message);
         setTid(res.id);
