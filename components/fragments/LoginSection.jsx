@@ -54,9 +54,7 @@ const LoginSection = () => {
           ) : null}
         </div>
 
-        <p className="bg-yellow-100 mt-4 w-fit rounded-full text-yellow-800 px-5 py-2">
-          Only 1 team member needs to register the team. (The Person Registering will automatically become the team leader)
-        </p>
+        <p className="bg-yellow-100 mt-4 w-fit rounded-full text-yellow-800 px-5 py-2">Only 1 team member needs to register the team.</p>
 
         <div className="mt-5">
           {status == "unauthenticated" ? (
