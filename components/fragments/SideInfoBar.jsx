@@ -36,8 +36,8 @@ const SideInfoBar = () => {
               spot now —register fast!
             </p>
             {/* Read More Button */}
-            <button onClick={toggleText} className="mt-2 text-sm float-right font-semibold hover:underline">
-              {isExpanded ? "Read less" : "Read more"}
+            <button onClick={toggleText} className="mt-2 text-sm float-right font-semibold text-neutral-500 hover:text-neutral-800">
+              Read more
             </button>
           </div>
 
