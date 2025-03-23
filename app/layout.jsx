@@ -4,6 +4,7 @@ import Provider from "./context/Provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
+  weight: ["400", "500", "700", "800"],
   subsets: ["latin"],
 });
 
@@ -49,7 +50,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className={``}>
         <Provider>{children}</Provider>
       </body>
     </html>
