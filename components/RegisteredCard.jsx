@@ -4,8 +4,8 @@ import Link from "next/link";
 
 function RegisteredCard({ tid }) {
   return (
-    <div className="w-full grid grid-cols-3 gap-4">
-      <div className="bg-white col-span-3 rounded-xl py-6">
+    <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white md:col-span-3 rounded-xl py-6">
         <div className="w-full bg-white rounded-2xl transform transition-all">
           <div className="flex flex-col items-center text-center">
             <div className="rounded-full bg-green-100 p-4 mb-4">
