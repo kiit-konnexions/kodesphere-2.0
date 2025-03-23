@@ -3,7 +3,7 @@ import SideInfoBar from "@/components/fragments/SideInfoBar";
 
 function Landing() {
   return (
-    <div className="md:flex h-svh gap-4 p-2 md:p-6 bg-neutral-100">
+    <div className="md:flex gap-4 h-svh overflow-y-hidden bg-neutral-100">
       {/* Left part */}
       <SideInfoBar />
       {/*Right Part */}
