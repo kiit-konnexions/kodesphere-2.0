@@ -1,23 +1,5 @@
-import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Provider from "./context/Provider";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  weight: ["400", "500", "700", "800"],
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-jetbrains-mono",
-});
 
 export const metadata = {
   title: "Ultimate hackathon, Kodessphere - Konnexions v2.0",
@@ -34,12 +16,12 @@ export const metadata = {
     authors: ["Konnexions", "KIIT"],
     images: [
       {
-        url: null,
+        url: "https://events.konnexions.dev/images/kodesphereBanner.jpg",
         width: 800,
         height: 600,
       },
       {
-        url: null,
+        url: "https://events.konnexions.dev/images/kodesphereBanner.jpg",
         width: 1800,
         height: 1600,
       },
