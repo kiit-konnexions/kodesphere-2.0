@@ -124,7 +124,7 @@ export default function RegistrationForm({ setIsRegistered }) {
     <div className="w-full rounded-xl bg-white h-fit">
       <Toaster />
 
-      <form onSubmit={handleSubmit} className="shadow-xl p-6 rounded-xl" noValidate>
+      <form onSubmit={handleSubmit} className="p-6 rounded-xl" noValidate>
         <section>
           <div className="flex items-center gap-3">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-8" viewBox="0 0 24 24">

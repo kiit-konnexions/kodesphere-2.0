@@ -16,7 +16,7 @@ const SideInfoBar = () => {
   };
 
   return (
-    <div className="md:w-[370px] w-full h-full py-4 pl-4 shrink-0">
+    <div className="md:w-[370px] w-full h-full shrink-0 pl-0 py-4 md:pr-0 md:pl-4">
       <div className="w-full h-full p-4 bg-white rounded-xl flex flex-col">
         <div className="-mt-2">
           <div className="flex items-center justify-between w-full flex-wrap">
