@@ -80,7 +80,7 @@ const SideInfoBar = () => {
         </Link>
       </div>
 
-      <div className="fixed inset-0 h-full w-full bg-black/50 flex"></div>
+      {/* <div className="fixed inset-0 h-full w-full bg-black/50 flex"></div> */}
     </div>
   );
 };
