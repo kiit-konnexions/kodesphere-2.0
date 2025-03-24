@@ -16,12 +16,12 @@ export const metadata = {
     authors: ["Konnexions", "KIIT"],
     images: [
       {
-        url: "https://events.konnexions.dev/og-image.png",
+        url: "https://events.konnexions.dev/og-image.jpeg",
         width: 800,
         height: 600,
       },
       {
-        url: "https://events.konnexions.dev/og-image.png",
+        url: "https://events.konnexions.dev/og-image.jpeg",
         width: 1800,
         height: 1600,
       },
