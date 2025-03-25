@@ -153,15 +153,11 @@ const Sidebar = ({teamDetails}) => {
                     <Link href={link.path} key={link.name} className="block"
                           onClick={() => setIsOpen(false)}>
                       <div className="relative overflow-hidden chess-btn">
-                    <span
-                        className={`block relative z-10 px-4 py-2 w-full text-left font-mono text-sm transition-colors duration-200 ${
-                            isActive(link.path) ? "border-l-2 border-black" : ""
-                        } text-black`}
-                    >
-                      {link.name}
-                    </span>
-                        <div
-                            className="absolute inset-0 transition-transform duration-300 ease-out transform -translate-x-full bg-gray-200 slide-fill"></div>
+                          <span className={`block relative z-10 px-4 py-2 w-full text-left font-mono text-sm transition-colors duration-200 ${
+                                    isActive(link.path) ? "border-l-2 border-black" : ""} text-black`}>
+                            {link.name}
+                          </span>
+                        <div className="absolute inset-0 transition-transform duration-300 ease-out transform -translate-x-full bg-gray-200 slide-fill"></div>
                       </div>
                     </Link>
                 ))}
@@ -202,10 +198,16 @@ const Sidebar = ({teamDetails}) => {
             </div>
 
             {/* Fixed position for status card so it doesn't overflow */}
-            <div
-                className="w-full p-3 mb-3 text-xs text-gray-600 border border-gray-200 bg-gray-100/50 md:mb-18">
-              <span className="block">Hackathon Status:</span>
-              <span className="font-bold text-green-600">ACTIVE</span>
+            <div className="w-full p-3 mb-3 text-xs text-gray-600 border border-gray-200 bg-gray-100/50 md:mb-18">
+              <div className="flex justify-between items-center">
+                <div>
+                  <span className="block">Hackathon Status:</span>
+                  <span className="font-bold text-green-600">ACTIVE</span>
+                </div>
+                <div className="relative">
+                  <span className="absolute top-1/2 right-0 w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse -translate-y-1/2"></span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
