@@ -5,7 +5,7 @@ import { getDashboardData } from "@/app/actions/getDashboardData";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
-const spaceGrotesk = Space_Grotesk({
+export const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   display: "swap",
 });
