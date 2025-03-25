@@ -1,4 +1,4 @@
-import { Space_Grotesk } from "next/font/google";
+import {Space_Grotesk} from "next/font/google";
 import SideBar from "@/components/SideBar";
 import DashboardClient from "@/app/(dashboard)/dashboard/components/DashboardClient";
 import { getDashboardData } from "@/app/actions/getDashboardData";
@@ -9,6 +9,7 @@ export const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   display: "swap",
 });
+
 
 async function DashboardPage() {
   const session = await getServerSession(authOptions);
@@ -31,7 +32,11 @@ async function DashboardPage() {
         {/* Will be replaced with actual chess pieces */}
       </div>
 
-      <DashboardClient teamName={teamDetails.TeamName} teamMembers={teamParticipants} spaceGrotesk={spaceGrotesk} />
+        <DashboardClient
+            teamName={teamDetails.TeamName}
+            teamMembers={teamParticipants}
+            teamDetails={teamDetails}
+        />
     </div>
   );
 }
