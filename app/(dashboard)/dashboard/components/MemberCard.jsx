@@ -117,8 +117,11 @@ export default function MemberCard({member, spaceGrotesk, index, isLoaded}) {
                             className="flex justify-between items-center"
                         >
                             <motion.div
-                                className="font-mono text-xs text-gray-500"
-                                animate={{opacity: hovered ? 0.9 : 0.7}}
+                                className="font-mono text-sm font-medium text-gray-700 bg-gray-50 px-2 py-0.5 border border-gray-200 rounded"
+                                animate={{
+                                    opacity: hovered ? 1 : 0.85,
+                                    scale: hovered ? 1.02 : 1
+                                }}
                                 transition={{duration: 0.3}}
                             >
                                 {member.rollNo || "ID-00000"}
