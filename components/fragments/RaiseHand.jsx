@@ -1,12 +1,32 @@
 "use client";
 
 import {rasieHand} from "@/app/actions/raisehand";
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
 const RaiseHand = ({teamName, domainName, setRaiseHandDialog, setNotification}) => {
     const [roomNumber, setRoomNumber] = useState("");
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
+    const popupRef = useRef(null);
+
+    // Handle escape key press
+    useEffect(() => {
+        const handleEscKey = (event) => {
+            if (event.key === "Escape") {
+                setRaiseHandDialog(false);
+            }
+        };
+
+        document.addEventListener("keydown", handleEscKey);
+        return () => document.removeEventListener("keydown", handleEscKey);
+    }, [setRaiseHandDialog]);
+
+    // Handle outside click
+    const handleOverlayClick = (event) => {
+        if (popupRef.current && !popupRef.current.contains(event.target)) {
+            setRaiseHandDialog(false);
+        }
+    };
 
     const NotifyRaisedHand = async () => {
         setLoading(true);
@@ -34,8 +54,15 @@ const RaiseHand = ({teamName, domainName, setRaiseHandDialog, setNotification}) 
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-            <div className="w-[400px] bg-white border border-gray-200 shadow-lg font-space-grotesk">
+        <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+            onClick={handleOverlayClick}
+        >
+            <div
+                ref={popupRef}
+                className="w-[400px] bg-white border border-gray-200 shadow-lg font-space-grotesk"
+                onClick={(e) => e.stopPropagation()}
+            >
                 <div className="flex items-center justify-between border-b border-gray-200 p-4 bg-gray-50">
                     <h2 className="text-xl font-semibold">Request Assistance</h2>
                     <button
