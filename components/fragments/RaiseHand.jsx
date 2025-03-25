@@ -62,8 +62,8 @@ const RaiseHand = ({teamName, domainName, setRaiseHandDialog, setNotification}) 
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M3 21.0001L14 21V5.98924C14 4.6252 14 3.94318 13.7187 3.47045C13.472 3.05596 13.0838 2.74457 12.6257 2.59368C12.1032 2.42159 11.4374 2.56954 10.1058 2.86544L7.50582 3.44322C6.6117 3.64191 6.16464 3.74126 5.83093 3.98167C5.53658 4.19373 5.30545 4.48186 5.1623 4.8152C5 5.19312 5 5.65108 5 6.56702V21.0001M13.994 5.00007H15.8C16.9201 5.00007 17.4802 5.00007 17.908 5.21805C18.2843 5.4098 18.5903 5.71576 18.782 6.09209C19 6.51991 19 7.07996 19 8.20007V21.0001H21M11 12.0001H11.01"
-                                        stroke="#000000" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round"/>
+                                        stroke="#000000" strokeWidth="2" strokeLinecap="round"
+                                        strokeLinejoin="round"/>
                                 </svg>
                             </div>
                             <input
@@ -102,7 +102,7 @@ const RaiseHand = ({teamName, domainName, setRaiseHandDialog, setNotification}) 
                                  xmlns="http://www.w3.org/2000/svg" className="mr-2 mb-0.5" stroke="currentColor">
                                 <path
                                     d="M14 3.5V11V4.5C14 3.67157 14.6716 3 15.5 3C16.3284 3 17 3.67157 17 4.5V11V7.5C17 6.67157 17.6716 6 18.5 6C19.3284 6 20 6.67157 20 7.5V16C20 19.3137 17.3137 22 14 22H12.8727C11.3483 22 9.88112 21.4198 8.76904 20.3772L3.81045 15.7285C3.09365 15.0565 3.0754 13.9246 3.77016 13.2298C4.44939 12.5506 5.55063 12.5506 6.22985 13.2298L8.00001 15V6.5C8.00001 5.67157 8.67158 5 9.50001 5C10.3284 5 11 5.67157 11 6.5V11V3.5C11 2.67157 11.6716 2 12.5 2C13.3284 2 14 2.67157 14 3.5Z"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                             Raise Hand
                         </button>
