@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import {spaceGrotesk} from "@/app/(dashboard)/dashboard/page";
 
 export default function DownloadButton({ isLocked, participantName }) {
     const [isDownloading, setIsDownloading] = useState(false);
@@ -15,10 +16,10 @@ export default function DownloadButton({ isLocked, participantName }) {
         <text x="400" y="100" font-family="Arial" font-size="40" text-anchor="middle" font-weight="bold">CERTIFICATE OF PARTICIPATION</text>
         <text x="400" y="180" font-family="Arial" font-size="30" text-anchor="middle">This certifies that</text>
         <text x="400" y="250" font-family="Arial" font-size="40" text-anchor="middle" font-weight="bold">${participantName}</text>
-        <text x="400" y="320" font-family="Arial" font-size="20" text-anchor="middle">has successfully participated in the Kodesphere Hackathon</text>
+        <text x="400" y="320" font-family="Arial" font-size="20" text-anchor="middle">has successfully participated in the Kodessphere Hackathon</text>
         <text x="400" y="350" font-family="Arial" font-size="20" text-anchor="middle">and demonstrated exceptional skills in problem-solving and innovation.</text>
-        <text x="200" y="500" font-family="Arial" font-size="16" text-anchor="middle">Date: April 2, 2025</text>
-        <text x="600" y="500" font-family="Arial" font-size="16" text-anchor="middle">Kodesphere Team</text>
+        <text x="200" y="500" font-family="Arial" font-size="16" text-anchor="middle">Date: March 31st, 2025</text>
+        <text x="600" y="500" font-family="Arial" font-size="16" text-anchor="middle">Konnexions Team</text>
         <line x1="120" y1="490" x2="280" y2="490" stroke="black" stroke-width="2" />
         <line x1="520" y1="490" x2="680" y2="490" stroke="black" stroke-width="2" />
       </svg>
@@ -27,7 +28,7 @@ export default function DownloadButton({ isLocked, participantName }) {
         const element = document.createElement("a");
         const file = new Blob([certificateContent], {type: 'image/svg+xml'});
         element.href = URL.createObjectURL(file);
-        element.download = `Kodesphere-Certificate-${participantName.replace(/\s+/g, '-')}-${Date.now()}.svg`;
+        element.download = `Kodessphere-Certificate-${participantName.replace(/\s+/g, '-')}-${Date.now()}.svg`;
 
         document.body.appendChild(element);
         element.click();
@@ -57,6 +58,7 @@ export default function DownloadButton({ isLocked, participantName }) {
           gap-3
           mx-auto
           min-w-[220px]
+          ${spaceGrotesk.className}
         `}
             >
                 {isLocked ? (
