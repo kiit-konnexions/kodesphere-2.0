@@ -48,7 +48,7 @@ const RaiseHand = ({teamName, domainName, setRaiseHandDialog, setNotification}) 
                 setNotification({show: false, message: "", subtitle: ""});
             }, 3000);
         } else {
-            setMessage("Please Enter Room Number!");
+            setMessage("Please select your room!");
             setLoading(false);
         }
     };
@@ -93,14 +93,27 @@ const RaiseHand = ({teamName, domainName, setRaiseHandDialog, setNotification}) 
                                         strokeLinejoin="round"/>
                                 </svg>
                             </div>
-                            <input
-                                type="text"
-                                id="roomNumber"
-                                placeholder="Enter your room number"
-                                className="w-full p-3 focus:outline-none focus:ring-1 focus:ring-black"
-                                value={roomNumber}
-                                onChange={(e) => setRoomNumber(e.target.value)}
-                            />
+                            <div className="relative w-full">
+                                <select
+                                    id="roomNumber"
+                                    value={roomNumber}
+                                    onChange={(e) => setRoomNumber(e.target.value)}
+                                    className="w-full p-3 bg-white appearance-none focus:outline-none focus:ring-1 focus:ring-black pr-8"
+                                >
+                                    <option value="" disabled>Select room number</option>
+                                    <option value="101">Room 101</option>
+                                    <option value="102">Room 102</option>
+                                    <option value="103">Room 103</option>
+                                    <option value="201">Room 201</option>
+                                    <option value="202">Room 202</option>
+                                    <option value="203">Room 203</option>
+                                </select>
+                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
