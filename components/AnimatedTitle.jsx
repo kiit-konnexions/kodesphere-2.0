@@ -4,7 +4,7 @@ import {JetBrains_Mono} from "next/font/google";
 import styles from './AnimatedTitle.module.css';
 
 // Load JetBrains Mono font
-const jetBrainsMono = JetBrains_Mono({
+export const jetBrainsMono = JetBrains_Mono({
     subsets: ['latin'],
     weight: ['400', '700'],
     display: 'swap',

@@ -1,5 +1,6 @@
 "use client";
 import {useEffect, useState} from 'react';
+import {jetBrainsMono} from "@/components/AnimatedTitle";
 
 function calculateTimeRemaining() {
     // Target date: March 31, 9 AM, 2025
@@ -71,7 +72,7 @@ export default function CountdownTimer() {
     };
 
     return (
-        <div style={{
+        <div className={`${jetBrainsMono.className}`} style={{
             display: 'flex',
             alignItems: 'center',
             padding: '8px 16px',
