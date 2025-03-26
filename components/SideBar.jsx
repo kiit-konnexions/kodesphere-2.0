@@ -58,8 +58,8 @@ const Sidebar = ({teamDetails}) => {
     return (
         <div className={`${spaceGrotesk.className}`}>
             {raiseHand &&
-                <RaiseHand setRaiseHandDialog={setRaiseHand} teamName={teamDetails?.TeamName}
-                           domainName={teamDetails?.Track} setNotification={setNotification}/>
+                <RaiseHand setRaiseHandDialog={setRaiseHand} teamName={'ALPHA' || teamDetails?.TeamName}
+                           domainName={'WEB' || teamDetails?.Track} setNotification={setNotification}/>
             }
             {isMobile && (
                 <div
