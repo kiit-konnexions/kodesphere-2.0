@@ -25,26 +25,26 @@ const PageHeader = ({title}) => {
 };
 
 async function SubmissionPage() {
-    const session = await getServerSession(authOptions);
-    const submission = await getSubmission(session?.user.email);
-
-    if (!session) {
-        return (
-            <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
-                401 | Unauthorized 🙅‍♂️
-              </span>
-        )
-    }
-    const {teamDetails} = await getDashboardData(session?.user.email);
+    // const session = await getServerSession(authOptions);
+    // const submission = await getSubmission(session?.user.email);
+    //
+    // if (!session) {
+    //     return (
+    //         <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
+    //             401 | Unauthorized 🙅‍♂️
+    //           </span>
+    //     )
+    // }
+    // const {teamDetails} = await getDashboardData(session?.user.email);
 
     return (
         <div className="flex min-h-screen text-black bg-gray-50">
-            <Sidebar teamDetails={teamDetails}/>
+            <Sidebar/>
             <CountdownRibbon />
 
             <main className="relative z-10 flex-1 p-6 mt-16 mb-8  md:p-12 sm:mt-0">
                 <PageHeader title="SUBMISSION"/>
-                <SubmissionForm submissionStat={submission.status} teamId={submission.TEAMID}/>
+                <SubmissionForm submissionStat={true} teamId={"ID3"}/>
             </main>
         </div>
     );

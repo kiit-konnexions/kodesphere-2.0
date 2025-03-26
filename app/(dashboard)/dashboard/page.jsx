@@ -12,16 +12,54 @@ export const spaceGrotesk = Space_Grotesk({
 
 
 async function DashboardPage() {
-    const session = await getServerSession(authOptions);
-    const {teamDetails, teamParticipants} = await getDashboardData(session?.user.email);
+    // const session = await getServerSession(authOptions);
+    // const {teamDetails, teamParticipants} = await getDashboardData(session?.user.email);
+    //
+    // if (!session || !teamDetails || !teamParticipants) {
+    //     return (
+    //         <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
+    //       401 | Unauthorized 🙅‍♂️
+    //     </span>
+    //     )
+    // }
 
-    if (!session || !teamDetails || !teamParticipants) {
-        return (
-            <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
-          401 | Unauthorized 🙅‍♂️
-        </span>
-        )
-    }
+    // Dummy team details
+    const teamDetails = {
+        TeamName: "Code Crusaders",
+        TeamId: "T123456"
+    };
+
+    // Dummy team participants
+    const teamParticipants = [
+        {
+            name: "Jane Smith",
+            rollNo: "20CS1001",
+            email: "jane.smith@example.com",
+            role: "Team Leader",
+            branch: "Computer Science"
+        },
+        {
+            name: "John Doe",
+            rollNo: "20CS1002",
+            email: "john.doe@example.com",
+            role: "Frontend Developer",
+            branch: "Computer Science"
+        },
+        {
+            name: "Alex Johnson",
+            rollNo: "20EC1003",
+            email: "alex.johnson@example.com",
+            role: "Backend Developer",
+            branch: "Electronics"
+        },
+        {
+            name: "Sam Wilson",
+            rollNo: "20AI1004",
+            email: "sam.wilson@example.com",
+            role: "UI/UX Designer",
+            branch: "AI & ML"
+        }
+    ];
 
     return (
         <div className="flex min-h-screen text-black bg-gray-50">

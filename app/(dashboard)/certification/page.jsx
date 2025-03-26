@@ -78,29 +78,29 @@ function isCertificateLocked() {
 }
 
 export default async function CertificatePage() {
-    // Get data on the server
-    const session = await getServerSession(authOptions);
-    const {teamDetails} = await getDashboardData(session?.user.email);
-    const participant = await prisma.participant.findFirst({
-        where: {
-            email: session?.user.email
-        }
-    })
+    // // Get data on the server
+    // const session = await getServerSession(authOptions);
+    // // const {teamDetails} = await getDashboardData(session?.user.email);
+    // const participant = await prisma.participant.findFirst({
+    //     where: {
+    //         email: session?.user.email
+    //     }
+    // })
 
-    const participantName = participant?.name; // In a real app, this would come from a database or session
+    const participantName = "Sahil" || participant?.name; // In a real app, this would come from a database or session
     const isLocked = isCertificateLocked();
 
-    if (!session || !participant) {
-        return (
-            <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
-              401 | Unauthorized 🙅‍♂️
-            </span>
-        )
-    }
+    // if (!session || !participant) {
+    //     return (
+    //         <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
+    //           401 | Unauthorized 🙅‍♂️
+    //         </span>
+    //     )
+    // }
 
     return (
         <div className="flex min-h-screen bg-gray-50 text-black">
-            <Sidebar teamDetails={teamDetails}/>
+            <Sidebar/>
             <CountdownRibbon/>
 
             <main className="relative z-10 flex-1 p-6 mt-16 mb-8 md:p-12 bg-gray-50 sm:mt-0">
