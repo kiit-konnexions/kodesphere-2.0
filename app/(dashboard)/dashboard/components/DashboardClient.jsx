@@ -1,7 +1,6 @@
 "use client";
 
 import {useEffect, useState} from "react";
-import CountdownTimer from "@/components/CountdownTimer";
 import ClientAnimatedTitle from "@/components/client/ClientAnimatedTitle";
 import MemberCard from "@/app/(dashboard)/dashboard/components/MemberCard";
 import {spaceGrotesk} from "@/app/(dashboard)/dashboard/page";
@@ -14,9 +13,9 @@ export default function DashboardClient({teamName, teamMembers, teamDetails}) {
     }, []);
 
     return (
-        <main className="relative z-10 flex-1 p-4 mt-16 mb-8 md:p-6 bg-gray-50 sm:mt-0">
+        <main className="relative z-10 flex-1 p-6 mt-16 mb-8 md:p-12 bg-gray-50 sm:mt-0">
             {/* Header section with title and countdown */}
-            <div className="flex flex-col items-start justify-between gap-4 mt-4 mb-8 sm:flex-row">
+            <div className="flex flex-col items-start justify-between gap-6 mt-4 mb-12 sm:flex-row">
                 <div
                     className={`transform transition-all duration-500 ${
                         isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
@@ -24,15 +23,6 @@ export default function DashboardClient({teamName, teamMembers, teamDetails}) {
                 >
                     <ClientAnimatedTitle text="DASHBOARD"/>
                     <p className="mt-1 text-gray-600">Congrats on making this far! ✨</p>
-                </div>
-
-                <div
-                    className={`bg-white p-4 rounded-none shadow-lg w-full sm:w-auto aspect-auto
-                transform transition-all duration-500 delay-100 ${
-                        isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-                    }`}
-                >
-                    <CountdownTimer/>
                 </div>
             </div>
 
