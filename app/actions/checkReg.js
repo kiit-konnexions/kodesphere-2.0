@@ -23,3 +23,20 @@ export async function checkReg(email) {
     return { success: false };
   }
 }
+
+export async function checkLimit(){
+  const rateLimit = await checkRateLimit();
+  if (!rateLimit) {
+    console.log("Rate limit exceeded");
+    return false;
+  }
+  try{
+    const RegCount = await prisma.participant.count();
+    return {success : true, RegCount};
+  }catch(e){
+    console.log(e);
+    return {success : false};
+  }finally{
+    prisma.$disconnect();
+  }
+}
