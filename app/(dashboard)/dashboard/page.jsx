@@ -32,32 +32,17 @@ async function DashboardPage() {
     // Dummy team participants
     const teamParticipants = [
         {
-            name: "Jane Smith",
-            rollNo: "20CS1001",
-            email: "jane.smith@example.com",
-            role: "Team Leader",
-            branch: "Computer Science"
+            name: "Sahil Choudhary",
+            rollNo: "22051451",
+            isLeader: true
         },
         {
             name: "John Doe",
-            rollNo: "20CS1002",
-            email: "john.doe@example.com",
-            role: "Frontend Developer",
-            branch: "Computer Science"
+            rollNo: "22051453"
         },
         {
-            name: "Alex Johnson",
-            rollNo: "20EC1003",
-            email: "alex.johnson@example.com",
-            role: "Backend Developer",
-            branch: "Electronics"
-        },
-        {
-            name: "Sam Wilson",
-            rollNo: "20AI1004",
-            email: "sam.wilson@example.com",
-            role: "UI/UX Designer",
-            branch: "AI & ML"
+            name: "Samridhhi Johnson",
+            rollNo: "2205889",
         }
     ];
 
