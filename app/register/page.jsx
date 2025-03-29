@@ -30,7 +30,7 @@ const RegistrationPage = () => {
                   setTid(res.tid);
                   setPageStatus("loaded");
               }else if(regLimit.success){
-                if(regLimit.RegCount >= 200 ){
+                if(regLimit.RegCount >= 650 ){
                     setIsRegClosed(true);
                     setPageStatus("loaded");
                 }
