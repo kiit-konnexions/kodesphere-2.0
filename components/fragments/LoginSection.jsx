@@ -1,13 +1,15 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import RegistrationForm from "../RegistrationForm";
 import RegistrationWrapper from "../RegistrationWrapper";
 import Image from "next/image";
+import PopupModal from "../PopupModal";
 
 const LoginSection = () => {
   const { data: session, status } = useSession();
+  const [isModalOpen, setIsModalOpen] = useState(true);
   return (
     <div className="w-full h-fit min-h-svh md:h-svh md:overflow-y-auto py-4 md:pr-4">
       <div className="bg-white md:rounded-xl px-4 py-8 md:p-6">
@@ -148,6 +150,12 @@ const LoginSection = () => {
             />
           </Link>
         </div>
+      </div>
+      <div className="flex items-center justify-center min-h-screen bg-transparent">
+        <PopupModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
       </div>
     </div>
   );
