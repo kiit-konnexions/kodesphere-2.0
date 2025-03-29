@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import RegistrationForm from "../RegistrationForm";
 import RegistrationWrapper from "../RegistrationWrapper";
+import Image from "next/image";
 
 const LoginSection = () => {
   const { data: session, status } = useSession();
@@ -14,22 +15,33 @@ const LoginSection = () => {
           {status == "authenticated" ? (
             <div>
               <div className="flex items-center gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-9" viewBox="0 0 16 16">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-9"
+                  viewBox="0 0 16 16"
+                >
                   <path
                     fill="currentColor"
                     d="M6.002 4a1.998 1.998 0 1 1 3.996 0a1.998 1.998 0 0 1-3.996 0M8 3.002a.998.998 0 1 0 0 1.996a.998.998 0 0 0 0-1.996M11 4.5a1.5 1.5 0 1 1 3 0a1.5 1.5 0 0 1-3 0m1.5-.5a.5.5 0 1 0 0 1a.5.5 0 0 0 0-1m-9-1a1.5 1.5 0 1 0 0 3a1.5 1.5 0 0 0 0-3M3 4.5a.5.5 0 1 1 1 0a.5.5 0 0 1-1 0M4.268 7A2 2 0 0 0 4 8H2v2.5a1.5 1.5 0 0 0 2.096 1.377c.074.331.19.647.34.942A2.5 2.5 0 0 1 1 10.5V8a1 1 0 0 1 1-1zm7.296 5.819A2.5 2.5 0 0 0 15 10.5V8a1 1 0 0 0-1-1h-2.268c.17.294.268.635.268 1h2v2.5a1.5 1.5 0 0 1-2.096 1.377q-.114.498-.34.942M6 6.999a1 1 0 0 0-1 1V11a3 3 0 0 0 6 0V8a1 1 0 0 0-1-1zm0 1h4V11a2 2 0 0 1-4 0z"
                   />
                 </svg>
-                <h1 className="text-2xl font-semibold text-neutral-800">Greetings</h1>
+                <h1 className="text-2xl font-semibold text-neutral-800">
+                  Greetings
+                </h1>
               </div>
               <p className="mt-4 text-sm md:text-base text-neutral-600 leading-7">
-                Please fill the form below to register your team. Min 2 and Max 3 members are allowed in a team.
+                Please fill the form below to register your team. Min 2 and Max
+                3 members are allowed in a team.
               </p>
             </div>
           ) : status == "unauthenticated" ? (
             <div>
               <div className="flex w-fit items-center gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-7" viewBox="0 0 256 262">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-7"
+                  viewBox="0 0 256 262"
+                >
                   <path
                     fill="#4285f4"
                     d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622l38.755 30.023l2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"
@@ -49,7 +61,9 @@ const LoginSection = () => {
                 </svg>
                 <h1 className="text-2xl font-semibold">Sign In</h1>
               </div>
-              <p className="mt-4 text-base text-neutral-600">To register, please sign in with your KIIT Gmail account.</p>
+              <p className="mt-4 text-base text-neutral-600">
+                To register, please sign in with your KIIT Gmail account.
+              </p>
             </div>
           ) : null}
         </div>
@@ -65,7 +79,12 @@ const LoginSection = () => {
                 onClick={() => signIn("google", { callbackUrl: "/" })}
                 className="flex items-center gap-2 bg-neutral-100 py-3 px-4 rounded-full hover:bg-gray-300 trasnsition-all ease-in-out duration-300 cursor-pointer"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={24}
+                  height={24}
+                  viewBox="0 0 24 24"
+                >
                   <path
                     fill="currentColor"
                     d="M21.594 11.08H12.32v2.746h6.656c-.356 3.812-3.457 5.46-6.462 5.46c-3.813 0-7.205-2.972-7.205-7.27c0-4.135 3.23-7.27 7.205-7.27c3.037 0 4.879 1.971 4.879 1.971l1.874-1.97S16.748 2 12.386 2C6.634 1.968 2.24 6.782 2.24 11.984C2.24 17.024 6.376 22 12.483 22c5.395 0 9.272-3.651 9.272-9.111c.033-1.131-.161-1.81-.161-1.81"
@@ -86,7 +105,11 @@ const LoginSection = () => {
                 onClick={() => signOut()}
                 className="flex items-center gap-2 bg-neutral-100 py-3 px-4 rounded-full hover:bg-gray-300 trasnsition-all ease-in-out duration-300 cursor-pointer"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 rotate-180" viewBox="0 0 24 24">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 rotate-180"
+                  viewBox="0 0 24 24"
+                >
                   <path
                     fill="currentColor"
                     d="m12.59 13l-2.3 2.29a1 1 0 0 0 0 1.42a1 1 0 0 0 1.42 0l4-4a1 1 0 0 0 .21-.33a1 1 0 0 0 0-.76a1 1 0 0 0-.21-.33l-4-4a1 1 0 1 0-1.42 1.42l2.3 2.29H3a1 1 0 0 0 0 2ZM12 2a10 10 0 0 0-9 5.55a1 1 0 0 0 1.8.9A8 8 0 1 1 12 20a7.93 7.93 0 0 1-7.16-4.45a1 1 0 0 0-1.8.9A10 10 0 1 0 12 2"
@@ -103,6 +126,29 @@ const LoginSection = () => {
           <RegistrationWrapper />
         </div>
       )}
+      <div className="bg-white md:rounded-xl px-4 py-8 mt-4 md:p-6">
+        <h1 className="text-2xl font-semibold">Event Partners</h1>
+        <div className="bg-white rounded-xl h-4xl flex items-center gap-4 mt-3 ml-5">
+          <Link href="https://www.biggiesburger.com/">
+            <Image
+              src="/biggies.png"
+              alt="starbucks"
+              height={115}
+              width={115}
+              className="rounded-xl"
+            />
+          </Link>
+          <Link href="https://tsb-stores.starbucksindia.net/location/odisha/bhubaneswar/patia">
+            <Image
+              src="/st1.png"
+              alt="starbucks"
+              height={200}
+              width={200}
+              className="rounded-xl"
+            />
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
