@@ -5,7 +5,7 @@ import RegistrationForm from '@/components/RegistrationForm';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { checkReg } from '../actions/checkReg';
+import { checkLimit, checkReg } from '../actions/checkReg';
 import Link from 'next/link';
 import EventDateCounter from "@/components/EventDateCounter";
 import LoadingSpinner from "@/components/LoadingSpinner";
@@ -17,16 +17,23 @@ const RegistrationPage = () => {
     const [tid,setTid] = useState("")
     const [pageStatus, setPageStatus] = useState("loading");
     const [isRegistered, setIsRegistered] = useState(false);
+    const [isRegClosed, setIsRegClosed] = useState(true);
 
     useEffect( ()=>{
         if(status==="authenticated"){
           const cr = async () => {
               // console.log(session?.user.email);
               const res = await checkReg(session?.user.email)
+              const regLimit = await checkLimit();
               if (res.success){
                   setIsRegistered(true);
                   setTid(res.tid);
                   setPageStatus("loaded");
+              }else if(regLimit.success){
+                if(regLimit.RegCount >= 650 ){
+                    setIsRegClosed(true);
+                    setPageStatus("loaded");
+                }
               }
               setPageStatus("loaded")
           }
@@ -85,6 +92,30 @@ const RegistrationPage = () => {
                                 </svg>
                                 View Digital ID Card
                             </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    if(isRegClosed){
+        return(
+            <div className="min-h-screen">
+                <div className="flex items-center justify-center min-h-screen bg-gray-50">
+                    <div
+                        className="w-full max-w-md p-8 mx-4 bg-white rounded-2xl shadow-xl transform transition-all animate-fadeIn">
+                        <div className="flex flex-col items-center text-center">
+                            <div className="rounded-full bg-red-100 p-4 mb-4">
+                                {/* cross svg */}
+                                <svg xmlns="http://www.w3.org/2000/svg" width={26} height={26} viewBox="0 0 16 16"><path fill="none" stroke="#f00909" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="m11.25 4.75l-6.5 6.5m0-6.5l6.5 6.5"></path></svg>
+                            </div>
+
+                            <h2 className="text-2xl font-bold text-gray-900 mb-2">Registrations are Closed!</h2>
+                            <p className="text-gray-600 mb-6">
+                                Better luck next time, see you next year with the same spirit and enthusiasm!
+                            </p>
+                            <EventDateCounter/>
                         </div>
                     </div>
                 </div>
