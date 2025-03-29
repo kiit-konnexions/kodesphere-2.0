@@ -71,12 +71,12 @@ const Sidebar = ({teamDetails}) => {
                         <Link href="/">
                             <div className="flex items-center">
                                 <div
-                                    className="flex items-center justify-center w-20 h-12 overflow-hidden bg-white rounded-sm">
+                                    className="flex items-center justify-center w-24 h-12 overflow-hidden bg-white rounded-sm">
                                     <Image
                                         src="/kodespherelogo.png"
                                         alt="Kodesphere Logo"
-                                        width={517}
-                                        height={192}
+                                        width={600}
+                                        height={200}
                                         className="object-contain w-auto max-h-6"
                                         priority
                                     />
