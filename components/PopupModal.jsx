@@ -21,8 +21,7 @@ export default function PopupModal({ isOpen, onClose }) {
         <div className="px-5 pb-7 mt-2">
           <h1 className="text-xl font-bold text-black">Announcements</h1>
           <p className="text-sm leading-7 text-neutral-500">
-            The Hackathon has postponed from 31st March, 2025 and the new date
-            is 6th April, 2025.
+            Due to overwhelming, the registration for the hackathon has been extended till 6th April, 2025.
           </p>
         </div>
       </div>
