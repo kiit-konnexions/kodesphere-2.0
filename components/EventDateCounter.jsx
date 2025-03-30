@@ -1,6 +1,6 @@
 export default function EventDateCounter() {
   // Calculate time remaining on server side
-  const eventDate = new Date("2025-03-31T00:00:00");
+  const eventDate = new Date("2025-04-06T00:00:00");
   const now = new Date();
   const diffTime = eventDate - now;
 
