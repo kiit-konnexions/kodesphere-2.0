@@ -21,8 +21,7 @@ export default function PopupModal({ isOpen, onClose }) {
         <div className="px-5 pb-7 mt-2">
           <h1 className="text-xl font-bold text-black">Announcements</h1>
           <p className="text-sm leading-7 text-neutral-500">
-            The Hackathon has postponed from 31st March, 2025 and the new date
-            is 6th April, 2025.
+            Due to overwhelming responses,we have extended the registration deadline for the Kodessphere v2.0 to 5th April, 2025!
           </p>
         </div>
       </div>
