@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react';
 import {jetBrainsMono} from "@/components/AnimatedTitle";
 
 // Target date: March 31, 9 AM, 2025
-export const targetDate = new Date(2025, 2, 31, 9, 0, 0);
+export const targetDate = new Date(2025, 3, 6, 9, 0, 0);
 
 export function calculateTimeRemaining() {
     const now = new Date();

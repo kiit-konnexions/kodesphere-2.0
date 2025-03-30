@@ -72,7 +72,7 @@ const CertificatePreview = ({participantName, isLocked}) => {
 
 // Server-side check if certificate is locked
 function isCertificateLocked() {
-    const unlockDate = new Date('2025-04-02T00:00:00');
+    const unlockDate = new Date('2025-09-02T00:00:00');
     const currentDate = new Date();
     return currentDate < unlockDate;
 }
