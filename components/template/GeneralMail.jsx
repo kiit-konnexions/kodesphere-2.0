@@ -1,5 +1,5 @@
 export const GeneralMessage = (team_name, team_id) => {
-    return `<!DOCTYPE html>
+  return `<!DOCTYPE html>
   <html lang="en">
     <head>
       <meta charset="UTF-8" />
@@ -93,7 +93,7 @@ export const GeneralMessage = (team_name, team_id) => {
           <p style="font-weight: 400; line-height: 1.9; margin-top: 10px">
             You have successfully secured a spot. This email serves as
             confirmation of ${team_name}'s registration (Team ID: ${team_id}) for
-            Kodessphere 2.0 scheduled on March 31, 2025. We are delighted to have
+            Kodessphere 2.0 scheduled on April 06, 2025. We are delighted to have
             your team onboard and anticipate a fruitful and enjoyable event.
           </p>
   
@@ -129,4 +129,4 @@ export const GeneralMessage = (team_name, team_id) => {
     </body>
   </html>
   `;
-  };
+};
