@@ -1,12 +1,13 @@
 import {Suspense} from "react";
 import Sidebar from "@/components/SideBar";
-import CountdownTimer from "@/components/CountdownTimer";
 import ClientAnimatedTitle from "@/components/client/ClientAnimatedTitle";
 import DownloadButton from "@/app/(dashboard)/certification/components/DownloadButton";
 import {getServerSession} from "next-auth";
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/lib/prisma";
 import {spaceGrotesk} from "@/app/(dashboard)/dashboard/page";
+import CountdownRibbon from "@/components/CountdownRibbon";
+import {getDashboardData} from "@/app/actions/getDashboardData";
 
 // Certificate Preview Component
 const CertificatePreview = ({participantName, isLocked}) => {
@@ -71,49 +72,44 @@ const CertificatePreview = ({participantName, isLocked}) => {
 
 // Server-side check if certificate is locked
 function isCertificateLocked() {
-    const unlockDate = new Date('2025-04-02T00:00:00');
+    const unlockDate = new Date('2025-09-02T00:00:00');
     const currentDate = new Date();
     return currentDate < unlockDate;
 }
 
 export default async function CertificatePage() {
-    // Get data on the server
+    // // Get data on the server
+    // const session = await getServerSession(authOptions);
+    // // const {teamDetails} = await getDashboardData(session?.user.email);
+    // const participant = await prisma.participant.findFirst({
+    //     where: {
+    //         email: session?.user.email
+    //     }
+    // })
 
-    const session = await getServerSession(authOptions);
-    const participant = await prisma.participant.findFirst({
-        where: {
-            email: session?.user.email
-        }
-    })
-
-    const participantName = participant?.name; // In a real app, this would come from a database or session
+    const participantName = "Sahil" || participant?.name; // In a real app, this would come from a database or session
     const isLocked = isCertificateLocked();
 
-    if (!session || !participant) {
-        return (
-            <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
-              401 | Unauthorized 🙅‍♂️
-            </span>
-        )
-    }
+    // if (!session || !participant) {
+    //     return (
+    //         <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
+    //           401 | Unauthorized 🙅‍♂️
+    //         </span>
+    //     )
+    // }
 
     return (
-        <div className="flex min-h-screen bg-white text-black">
+        <div className="flex min-h-screen bg-gray-50 text-black">
             <Sidebar/>
+            <CountdownRibbon/>
 
-            <main className="flex-1 p-4 sm:p-6 md:p-12 bg-white relative z-10 mt-16 sm:mt-0 mb-4 sm:mb-8">
+            <main className="relative z-10 flex-1 p-6 mt-16 mb-8 md:p-12 bg-gray-50 sm:mt-0">
                 {/* Header section with title and countdown */}
-                <div
-                    className="flex flex-col sm:flex-row justify-between items-start gap-4 sm:gap-6 mb-8 sm:mb-12 mt-2 sm:mt-4">
+                <div className="flex flex-col items-start justify-between gap-6 mt-4 mb-12 sm:flex-row">
                     <div className="transform translate-y-0 opacity-100 max-w-full">
                         <Suspense fallback={<div className="h-8 sm:h-10 w-48 sm:w-64 bg-gray-200 animate-pulse"></div>}>
                             <ClientAnimatedTitle text="CERTIFICATE"/>
                         </Suspense>
-                    </div>
-
-                    <div
-                        className="bg-gray-100 p-3 sm:p-5 rounded-none border border-gray-300 shadow-sm w-full sm:w-auto">
-                        <CountdownTimer targetDate="April 2, 2025"/>
                     </div>
                 </div>
 

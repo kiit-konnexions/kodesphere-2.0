@@ -1,7 +1,8 @@
 // Server Component - Problem Statement Detail
 import ImageWithFallback from "@/app/(dashboard)/problem-statements/components/ImageWithFallback";
+import {spaceGrotesk} from "@/app/(dashboard)/dashboard/page";
 
-export default function ProblemStatementDetail({ problem, spaceGrotesk }) {
+export default function ProblemStatementDetail({problem}) {
     if (!problem) return null;
 
     const isImageUrl = problem.imageSrc?.startsWith('http');
@@ -39,7 +40,7 @@ export default function ProblemStatementDetail({ problem, spaceGrotesk }) {
                         </div>
                     </div>
                 ) : (
-                    <PlaceholderImage />
+                    <PlaceholderImage/>
                 )}
             </div>
         </div>
