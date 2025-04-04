@@ -2,17 +2,21 @@ import { NextResponse } from "next/server";
 
 export function middleware(req) {
   const url = req.nextUrl;
-  const targetDate = new Date("2025-04-01T00:00:00Z"); // Set your hackathon start date
+  // change the timing to IST
+  // const IST_OFFSET = 5.5 * 60 * 60 * 1000; // IST offset in milliseconds
+  
+  const targetDate = new Date("2025-04-06T15:30:00+05:30"); // Set your hackathon start date add ist time of 3:30 pm
+  // targetDate.setTime(targetDate.getTime() + IST_OFFSET); // Adjust to IST
+
   const currentDate = new Date();
 
-  const restrictedPaths = ["/submission", "/certification", "/problem-statements", "/rules"];
+  const restrictedPaths = ["/submission"];
   
   // Check if the request is for a restricted route
   if (
-    currentDate < targetDate &&
-    (url.pathname.startsWith("/dashboard") || restrictedPaths.includes(url.pathname)) && process.env.NODE_ENV === "production"
+    (currentDate < targetDate && (restrictedPaths.includes(url.pathname) && process.env.NODE_ENV=== "production"))
   ) {
-    return NextResponse.redirect(new URL("/", req.url)); // Redirect if access is restricted
+    return NextResponse.redirect(new URL("/dashboard", req.url)); // Redirect if access is restricted
   }
 
   return NextResponse.next();
@@ -20,5 +24,5 @@ export function middleware(req) {
 
 // Apply middleware only to specific routes
 export const config = {
-  matcher: ["/dashboard/:path*", "/submission", "/certification", "/problem-statements", "/rules"], // Protects all these routes
+  matcher: ["/submission"], // Protects all these routes
 };

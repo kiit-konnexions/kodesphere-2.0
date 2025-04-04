@@ -32,7 +32,7 @@ export default function MemberCard({member, spaceGrotesk, index, isLoaded}) {
             onMouseLeave={() => setHovered(false)}
         >
             {/* Leader background logo */}
-            {member.isLeader && (
+            {member.leader && (
                 <motion.div
                     className="absolute -right-16 sm:-right-12 md:-right-16 lg:-right-30 top-1/2 -translate-y-1/2 pointer-events-none z-0 flex justify-end items-center overflow-hidden"
                     style={{width: '60%', height: '60%'}}

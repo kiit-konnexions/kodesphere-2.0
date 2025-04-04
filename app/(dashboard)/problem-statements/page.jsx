@@ -10,21 +10,23 @@ import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import CountdownRibbon from "@/components/CountdownRibbon";
 
 export default async function ProblemStatementPage() {
-    // const session = await getServerSession(authOptions);
-    //
-    //
-    // const teamDetails = await getProblemStatements(session?.user.email);
+    const session = await getServerSession(authOptions);
+    
+    
+    const teamDetails = await getProblemStatements(session?.user.email);
 
     const problemStatements = getProblemStatementsDescriptions();
-    const currentProblem = problemStatements[0];
 
-    // if (!session || !teamDetails) {
-    //     return (
-    //         <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
-    //     401 | Unauthorized 🙅‍♂️
-    //   </span>
-    //     )
-    // }
+    const currentProblem = problemStatements.find(problem => problem.domain===teamDetails?.Track)
+
+
+    if (!session || !teamDetails) {
+        return (
+            <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
+        401 | Unauthorized 🙅‍♂️
+      </span>
+        )
+    }
 
     if (!currentProblem) {
         return <div>Problem statement not found</div>;
@@ -46,7 +48,7 @@ export default async function ProblemStatementPage() {
 
                 {/* Domain Badge */}
                 <div>
-                    <DomainBadge domain={"WEB" || teamDetails.Track}/>
+                    <DomainBadge domain={teamDetails.Track || '*****'}/>
                 </div>
 
                 {/* Problem Statement Details */}

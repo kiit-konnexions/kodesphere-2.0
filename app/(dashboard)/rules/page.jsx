@@ -55,17 +55,17 @@ const RulesContainer = ({rules}) => {
 };
 
 async function RulesPage() {
-    // const session = await getServerSession(authOptions);
-    //
-    // if (!session) {
-    //     return (
-    //         <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
-    //               401 | Unauthorized 🙅‍♂️
-    //         </span>
-    //     )
-    // }
-    //
-    // const {teamDetails} = await getDashboardData(session?.user.email);
+    const session = await getServerSession(authOptions);
+    const {teamDetails} = await getDashboardData(session?.user.email);
+    
+    if (!session || !teamDetails) {
+        return (
+            <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
+                  401 | Unauthorized 🙅‍♂️
+            </span>
+        )
+    }
+    
 
     return (
         <div className="flex min-h-screen bg-gray-50 text-black">

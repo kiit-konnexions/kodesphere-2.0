@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import RegisteredCard from "./RegisteredCard";
 import RegistrationForm from "./RegistrationForm";
+import RegistrationClosedCard from "./RegistrationClosedCard";
 
 function RegistrationWrapper() {
   const { data: session, status } = useSession();
@@ -30,6 +31,7 @@ function RegistrationWrapper() {
       {isRegistered == null ? (
         "Checking registration status"
       ) : isRegistered == false ? (
+        // <RegistrationClosedCard/>
         <RegistrationForm setIsRegistered={setIsRegistered} setTid={setTid} />
       ) : isRegistered == true ? (
         <RegisteredCard tid={tid} />

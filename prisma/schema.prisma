@@ -37,6 +37,7 @@ model Participant {
   phone     String
   leader    Boolean
   TeamId    String
+  attendance Boolean @default(false)
   createdAt DateTime @default(now())
 
   Team Team @relation(fields: [TeamId], references: [TeamId])

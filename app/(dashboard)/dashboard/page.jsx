@@ -4,6 +4,7 @@ import DashboardClient from "@/app/(dashboard)/dashboard/components/DashboardCli
 import CountdownRibbon from "@/components/CountdownRibbon";
 import {getServerSession} from "next-auth";
 import {getDashboardData} from "@/app/actions/getDashboardData";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export const spaceGrotesk = Space_Grotesk({
     subsets: ["latin"],
@@ -12,39 +13,39 @@ export const spaceGrotesk = Space_Grotesk({
 
 
 async function DashboardPage() {
-    // const session = await getServerSession(authOptions);
-    // const {teamDetails, teamParticipants} = await getDashboardData(session?.user.email);
-    //
-    // if (!session || !teamDetails || !teamParticipants) {
-    //     return (
-    //         <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
-    //       401 | Unauthorized 🙅‍♂️
-    //     </span>
-    //     )
-    // }
+    const session = await getServerSession(authOptions);
+    const {teamDetails, teamParticipants} = await getDashboardData(session?.user.email);
+    
+    if (!session || !teamDetails || !teamParticipants) {
+        return (
+            <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
+          401 | Unauthorized 🙅‍♂️
+        </span>
+        )
+    }
 
-    // Dummy team details
-    const teamDetails = {
-        TeamName: "Code Crusaders",
-        TeamId: "T123456"
-    };
+    // // Dummy team details
+    // const teamDetails = {
+    //     TeamName: "Code Crusaders",
+    //     TeamId: "T123456"
+    // };
 
-    // Dummy team participants
-    const teamParticipants = [
-        {
-            name: "Sahil Choudhary",
-            rollNo: "22051451",
-            isLeader: true
-        },
-        {
-            name: "John Doe",
-            rollNo: "22051453"
-        },
-        {
-            name: "Samridhhi Johnson",
-            rollNo: "2205889",
-        }
-    ];
+    // // Dummy team participants
+    // const teamParticipants = [
+    //     {
+    //         name: "Sahil Choudhary",
+    //         rollNo: "22051451",
+    //         isLeader: true
+    //     },
+    //     {
+    //         name: "John Doe",
+    //         rollNo: "22051453"
+    //     },
+    //     {
+    //         name: "Samridhhi Johnson",
+    //         rollNo: "2205889",
+    //     }
+    // ];
 
     return (
         <div className="flex min-h-screen text-black bg-gray-50">

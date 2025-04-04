@@ -38,6 +38,9 @@ const RaiseHand = ({teamName, domainName, setRaiseHandDialog, setNotification}) 
             };
             const response = await rasieHand(data);
             setLoading(false);
+            if(response.success){
+                setRaiseHandDialog(false);
+            }
             setNotification({
                 show: true,
                 message: response.message,
@@ -100,12 +103,12 @@ const RaiseHand = ({teamName, domainName, setRaiseHandDialog, setNotification}) 
                                     className="w-full p-2 sm:p-3 bg-white appearance-none focus:outline-none focus:ring-1 focus:ring-black pr-8 text-sm"
                                 >
                                     <option value="" disabled>Select room number</option>
-                                    <option value="101">Room 101</option>
-                                    <option value="102">Room 102</option>
-                                    <option value="103">Room 103</option>
-                                    <option value="201">Room 201</option>
-                                    <option value="202">Room 202</option>
-                                    <option value="203">Room 203</option>
+                                    <option value="LH 301">Room LH-301</option>
+                                    <option value="LH 302">Room LH-302</option>
+                                    <option value="LH 303">Room LH-303</option>
+                                    <option value="LH 304">Room LH-304</option>
+                                    <option value="WL 301">Room WL-301</option>
+                                    <option value="WL 302">Room WL-302</option>
                                 </select>
                                 <div
                                     className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
