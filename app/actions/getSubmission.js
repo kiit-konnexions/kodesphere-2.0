@@ -16,7 +16,16 @@ export async function getSubmission(loggedInEmail){
         },
     });
     
-    const TEAMID = participantData?.TeamId ;
+    const TEAMID = participantData?.TeamId;
+    
+    const {Track: track} = await prisma.team.findFirst({
+        where: {
+            TeamId: TEAMID
+        },
+        select: {
+            Track: true
+        }
+    })
 
     const submissions = await prisma.submission.findFirst({
         where:{
@@ -26,8 +35,8 @@ export async function getSubmission(loggedInEmail){
 
     await prisma.$disconnect();
     if(submissions){
-        return ({status:true, TEAMID})
+        return ({status:true, TEAMID, track})
     }
 
-    return  ({status:false, TEAMID})
+    return  ({status:false, TEAMID, track})
 }
