@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,18 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum TRACKS {
-  WEB
-  APP
-  ML
-}
-
 model Team {
-  TeamId    String   @id @default(uuid())
-  TeamName  String   @unique
-  Track     TRACKS
-  createdAt DateTime @default(now())
-
+  TeamId       String        @id @default(uuid())
+  TeamName     String        @unique
+  Track        TRACKS
+  createdAt    DateTime      @default(now())
   Participants Participant[]
   Submission   Submission?
 }
@@ -45,8 +32,13 @@ model Participant {
 
 model Submission {
   TeamId         String   @id
-  submissionData Json
   submittedAt    DateTime @default(now())
+  submissionData Json
+  Team           Team     @relation(fields: [TeamId], references: [TeamId])
+}
 
-  Team Team @relation(fields: [TeamId], references: [TeamId])
+enum TRACKS {
+  WEB
+  APP
+  ML
 }
