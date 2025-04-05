@@ -30,23 +30,22 @@ const page = () => {
   }, []);
 
   return (
-    <div
-      className={`${spaceGrotesk.className} flex min-h-screen items-center justify-center gap-10 bg-gray-200 py-0 md:px-8 px-1 md:flex-row flex-col`}
-    >
-      {participants && (
-        <div className="flex flex-col items-start justify-start p-8">
-          {/* <span className="text-7xl font-bold font-gray-600">Kodessphere 2.0</span> */}
-          <img
-            src="/kodespherelogo.png"
-            alt="kdsphr"
-            className="w-full h-[100px]"
-          />
-          <span className="font-lg font-bold">
-            Your pass to the one and only Kodessphere 2.0 is here 😍
-          </span>
-        </div>
-      )}
-      <div className="flex h-full w-fit md:flex-row flex-col items-start justify-end gap-5">
+    <>
+      <div className="overflow-hidden">
+        {participants && (
+          <div className="flex flex-col items-center justify-center p-2 bg-white z-50">
+            <img
+              src="/kodespherelogo.png"
+              alt="kdsphr"
+              className="w-[400px] h-[100px]"
+            />
+            <span className="font-lg font-bold z-50">
+              Your pass to the one and only Kodessphere 2.0 is here 😍
+            </span>
+          </div>
+        )}
+      </div>
+      <div className="flex h-full w-full md:flex-row flex-col items-center justify-center p-5 gap-18 mt-7 bg-neutral-100 rounded-2xl overflow-hidden">
         {participants &&
           participants?.map((participant) => (
             <div
@@ -55,7 +54,7 @@ const page = () => {
             >
               <img
                 src="/strap.png"
-                className="h-full w-full translate-y-4"
+                className="h-full w-full translate-y-7"
                 alt="idcard-strap"
               />
               <img
@@ -89,7 +88,7 @@ const page = () => {
           Loading ID Cards...
         </span>
       )}
-    </div>
+    </>
   );
 };
 
