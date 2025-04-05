@@ -17,16 +17,17 @@ model Team {
 }
 
 model Participant {
-  UserId     String   @id @default(uuid())
-  email      String   @unique
-  name       String
-  rollNo     String
-  phone      String
-  leader     Boolean
-  TeamId     String
-  createdAt  DateTime @default(now())
-  attendance Boolean  @default(false)
-  Team       Team     @relation(fields: [TeamId], references: [TeamId])
+  UserId    String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  rollNo    String
+  phone     String
+  leader    Boolean
+  TeamId    String
+  attendance Boolean @default(false)
+  createdAt DateTime @default(now())
+
+  Team Team @relation(fields: [TeamId], references: [TeamId])
 }
 
 model Submission {

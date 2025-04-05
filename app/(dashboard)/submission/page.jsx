@@ -1,11 +1,12 @@
 import { Suspense } from "react";
 import Sidebar from "@/components/SideBar";
 import ClientAnimatedTitle from "@/components/client/ClientAnimatedTitle";
-import ClientCountdownTimer from "@/components/client/ClientCountdownTimer";
+import CountdownRibbon from "@/components/CountdownRibbon";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import SubmissionForm from "@/app/(dashboard)/submission/SubmissionForm";
 import { getSubmission } from "@/app/actions/getSubmission";
+import { getDashboardData } from "@/app/actions/getDashboardData";
 
 // PageHeader component for consistent header styling across pages
 const PageHeader = ({ title, showCountdown = true }) => {
@@ -22,7 +23,7 @@ const PageHeader = ({ title, showCountdown = true }) => {
 
       {showCountdown && (
         <div className="w-full p-5 bg-gray-100 border border-gray-200 rounded-none shadow-sm sm:w-auto">
-          <ClientCountdownTimer targetDate="April 2, 2025" />
+          <CountdownRibbon/>
         </div>
       )}
     </header>
@@ -32,8 +33,9 @@ const PageHeader = ({ title, showCountdown = true }) => {
 async function SubmissionPage() {
   const session = await getServerSession(authOptions);
   const submission = await getSubmission(session?.user.email);
+    const {teamDetails, teamParticipants} = await getDashboardData(session?.user.email);
 
-  if (!session) {
+  if (!session || !teamDetails || !teamParticipants) {
     return (
       <span className='w-screen h-screen flex items-center justify-center text-xl text-center'>
         401 | Unauthorized 🙅‍♂️

@@ -1,8 +1,16 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import {useEffect, useRef, useState} from "react";
+import {JetBrains_Mono} from "next/font/google";
 import styles from './AnimatedTitle.module.css';
 
-const AnimatedTitle = ({ text, triggerOnLoad = true }) => {
+// Load JetBrains Mono font
+export const jetBrainsMono = JetBrains_Mono({
+    subsets: ['latin'],
+    weight: ['400', '700'],
+    display: 'swap',
+});
+
+const AnimatedTitle = ({text, triggerOnLoad = true}) => {
     const [words, setWords] = useState([]);
     const hasAnimatedRef = useRef(false);
 
@@ -10,7 +18,7 @@ const AnimatedTitle = ({ text, triggerOnLoad = true }) => {
     useEffect(() => {
         const sentence = text.split(' ');
         const wordsArray = sentence.map(word => {
-            return word.split('').map(letter => ({ letter, original: letter }));
+            return word.split('').map(letter => ({letter, original: letter}));
         });
         setWords(wordsArray);
     }, [text]);
@@ -67,7 +75,7 @@ const AnimatedTitle = ({ text, triggerOnLoad = true }) => {
     };
 
     return (
-        <div className={styles.titleContainer}>
+        <div className={`${styles.titleContainer} ${jetBrainsMono.className}`}>
             <h1>
                 {words.map((word, wordIndex) => (
                     <span
@@ -75,16 +83,16 @@ const AnimatedTitle = ({ text, triggerOnLoad = true }) => {
                         className={styles.word}
                         onMouseEnter={() => animateWord(wordIndex)}
                     >
-            {word.map((letter, letterIndex) => (
-                <span
-                    key={`letter-${letterIndex}`}
-                    className={`${styles.letter} ${letter.changing ? styles.changing : ''}`}
-                >
-                {letter.letter}
-              </span>
-            ))}
+                                    {word.map((letter, letterIndex) => (
+                                        <span
+                                            key={`letter-${letterIndex}`}
+                                            className={`${styles.letter} ${letter.changing ? styles.changing : ''}`}
+                                        >
+                                            {letter.letter}
+                                        </span>
+                                    ))}
                         {wordIndex < words.length - 1 ? ' ' : ''}
-          </span>
+                                </span>
                 ))}
             </h1>
         </div>

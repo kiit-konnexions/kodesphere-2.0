@@ -74,3 +74,30 @@ button {
     @apply transition-none;
   }
 }
+
+.path-piece {
+  stroke-dasharray: 900 100; /* 90% visible, 10% gap */
+  stroke: rgba(10, 10, 10, 0.3);
+  animation: pathLoop 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation-delay: 2s; /* Start 2s after page load */
+  transition: stroke 0.3s ease, animation 0.5s ease-out;
+}
+
+.chess-horse:hover .path-piece {
+  stroke: rgba(30, 30, 30, 0.6);
+  animation: pathLoop 5s cubic-bezier(0.2, 0, 0.8, 1) infinite; /* Much faster, same direction */
+}
+
+@keyframes pathLoop {
+  0% {
+    stroke-dashoffset: 0;
+    stroke-width: 0.5;
+  }
+  50% {
+    stroke-width: 0.6; /* Subtle pulse effect */
+  }
+  100% {
+    stroke-dashoffset: 1000; /* Full path length */
+    stroke-width: 0.7;
+  }
+}
