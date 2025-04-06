@@ -12,6 +12,19 @@ export default function ProblemStatementDetail({problem}) {
             <div className="mb-8">
                 <p className="leading-relaxed text-gray-700">{problem.description}</p>
             </div>
+            {
+                problem.domain === 'WEB' && 
+                <div className="w-full flex flex-col items-start justify-center gap-3 mb-3">
+                    <span className="text-xl font-bold">
+                        Typography Information
+                    </span>
+                    <img src="/images/web-ps-typo.jpg" alt="typopgraphy" className="w-auto h-[500px]"/>
+                    <span className="text-xl font-bold">
+                        Color Scheme
+                    </span>
+                    <img src="/images/web-ps-clrschm.jpg" alt="color-scheme" className="w-full h-auto"/>
+                </div>
+            }
 
             {/* Objective Section */}
             {problem.sections?.objective && (
