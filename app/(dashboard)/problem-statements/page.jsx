@@ -8,6 +8,7 @@ import {getProblemStatements} from "@/app/actions/getProblemStatement";
 import {getServerSession} from "next-auth";
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import CountdownRibbon from "@/components/CountdownRibbon";
+import MLProblemDetail from "./components/MLProblemStatementDetails";
 
 export default async function ProblemStatementPage() {
     const session = await getServerSession(authOptions);
@@ -17,7 +18,7 @@ export default async function ProblemStatementPage() {
 
     const problemStatements = getProblemStatementsDescriptions();
 
-    const currentProblem = problemStatements.find(problem => problem.domain===teamDetails?.Track)
+    const currentProblem = problemStatements.find(problem => problem.domain===teamDetails.Track);
 
 
     if (!session || !teamDetails) {
@@ -53,7 +54,11 @@ export default async function ProblemStatementPage() {
 
                 {/* Problem Statement Details */}
                 <div>
-                    <ProblemStatementDetail problem={currentProblem}/>
+                    {currentProblem.domain === 'ML' ? (
+                        <MLProblemDetail problem={currentProblem} />
+                    ) : (
+                        <ProblemStatementDetail problem={currentProblem} />
+                    )}
                 </div>
             </main>
         </div>

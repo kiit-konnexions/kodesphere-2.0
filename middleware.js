@@ -16,13 +16,13 @@ export function middleware(req) {
   
   // Check if the request is for a restricted route
   if (
-    (currentDate < targetDateSubmission && url.pathname === "/submission")
+    (currentDate < targetDateSubmission && url.pathname === "/submission") && process.env.NODE_ENV==='production'
   ) {
     return NextResponse.redirect(new URL("/dashboard", req.url)); // Redirect if access is restricted
   }
 
   if(
-    (currentDate < targetDateHackathonStart && restrictedPaths.includes(url.pathname))
+    (currentDate < targetDateHackathonStart && restrictedPaths.includes(url.pathname)) && process.env.NODE_ENV==='production'
   ){
     return NextResponse.redirect(new URL("/", req.url));
   }
