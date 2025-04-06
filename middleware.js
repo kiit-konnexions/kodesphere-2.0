@@ -5,7 +5,7 @@ export function middleware(req) {
   // change the timing to IST
   // const IST_OFFSET = 5.5 * 60 * 60 * 1000; // IST offset in milliseconds
   
-  const targetDateSubmission = new Date("2025-04-06T15:30:00+05:30");
+  const targetDateSubmission = new Date("2025-04-06T15:15:00+05:30");
   const targetDateHackathonStart = new Date("2025-04-06T09:00+05:30");
   // Set your hackathon start date add ist time of 3:30 pm
   // targetDate.setTime(targetDate.getTime() + IST_OFFSET); // Adjust to IST
