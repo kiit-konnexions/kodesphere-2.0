@@ -21,29 +21,35 @@ function RegisteredCard({ tid }) {
             <div className="mt-5">
               <EventDateCounter />
             </div>
-            <Link
-              href={`/digital-id/${tid}`}
-              className="w-fit mx-auto text-sm flex items-center justify-center gap-2 h-10 px-5 bg-black text-white rounded-full font-medium transition-all hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-5 w-5"
+            <div className="flex items-center justify-center gap-3 mt-2">
+
+              <Link
+                href={`/digital-id/${tid}`}
+                className="w-fit mx-auto text-sm flex items-center justify-center gap-2 h-10 px-5 bg-black text-white rounded-full font-medium transition-all hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
               >
-                <rect width="18" height="16" x="3" y="4" rx="2" />
-                <path d="M7 12h10" />
-                <path d="M7 16h10" />
-                <path d="M7 8h4" />
-              </svg>
-              View ID Card
-            </Link>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-5 w-5"
+                >
+                  <rect width="18" height="16" x="3" y="4" rx="2" />
+                  <path d="M7 12h10" />
+                  <path d="M7 16h10" />
+                  <path d="M7 8h4" />
+                </svg>
+                View ID Card
+              </Link>
+              <Link href="/dashboard" className="w-fit mx-auto text-sm flex items-center justify-center gap-2 h-10 px-5 bg-black text-white rounded-full font-medium transition-all hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
+                Dashboard
+              </Link>
+            </div>
           </div>
         </div>
       </div>
